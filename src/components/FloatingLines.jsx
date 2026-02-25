@@ -474,6 +474,6 @@ export default function FloatingLines({
   return (
     <div
       ref={containerRef}
-      className="w-full h-full  overflow-hidden floating-lines-container fixed z-0 top-0 left-0 inset-0" />
+      className="w-full h-full  overflow-hidden floating-lines-container fixed -z-1 top-0 left-0 inset-0" />
   );
 }
