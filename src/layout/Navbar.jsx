@@ -16,7 +16,7 @@ const Navbar = () => {
         <div className="w-9 h-9 rounded-full bg-linear-to-r from-purple-500 to-blue-500 flex items-center justify-center text-sm font-bold text-white">
           <img className='rounded-full w-9 h-9 object-cover' src={profileImg} alt="" />
         </div>
-        <span className=' text-white text-sm tracking-wide hidden sm:block'>Saurav Singh</span>
+        <span className=' text-white text-sm tracking-wide '>Saurav Singh</span>
     </div>
         <ShimmerButton className=" text-xs">Let's Connect</ShimmerButton>
   </motion.nav>

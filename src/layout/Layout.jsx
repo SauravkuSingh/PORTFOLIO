@@ -4,6 +4,7 @@ import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Tech from "@/pages/Tech";
 import Navbar from "./Navbar";
+import Background from '@/components/background/Background'
 
 const Layout = () => {
   const scrollToSection = (id) => {
@@ -13,45 +14,43 @@ const Layout = () => {
   };
 
   return (
-    <>
-          <div
-            className="min-h-screen bg-black/10 text-white"
-          >
-            <Navbar />
+    <> <Background/>
+      <div className="min-h-screen relative z-10 inset-0 text-white">
+        <Navbar />
 
-            {/* SECTIONS */}
-            <section id="home">
-              <Home />
-            </section>
+        {/* SECTIONS */}
+        <section id="home">
+          <Home />
+        </section>
 
-            <section id="about">
-              <About />
-            </section>
+        <section id="about">
+          <About />
+        </section>
 
-            <section id="tech">
-              <Tech />
-            </section>
+        <section id="tech">
+          <Tech />
+        </section>
 
-            {/* DOCK */}
-            <Dock className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 text-white">
-              <DockIcon>
-                <button onClick={() => scrollToSection("home")}>
-                  <HomeIcon />
-                </button>
-              </DockIcon>
+        {/* DOCK */}
+        <Dock className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 text-white">
+          <DockIcon>
+            <button onClick={() => scrollToSection("home")}>
+              <HomeIcon />
+            </button>
+          </DockIcon>
 
-              <DockIcon>
-                <button onClick={() => scrollToSection("about")}>
-                  <CircleUserRound />
-                </button>
-              </DockIcon>
-              <DockIcon>
-                <button onClick={() => scrollToSection("tech")}>
-                  <CircleUserRound />
-                </button>
-              </DockIcon>
-            </Dock>
-          </div>
+          <DockIcon>
+            <button onClick={() => scrollToSection("about")}>
+              <CircleUserRound />
+            </button>
+          </DockIcon>
+          <DockIcon>
+            <button onClick={() => scrollToSection("tech")}>
+              <CircleUserRound />
+            </button>
+          </DockIcon>
+        </Dock>
+      </div>
     </>
   );
 };

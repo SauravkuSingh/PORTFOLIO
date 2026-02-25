@@ -4,7 +4,7 @@ import { CoolMode } from "@/components/ui/cool-mode";
 
 const Home = () => {
   return (
-    <div className="flex items-center flex-col gap-5 justify-center text-6xl font-bold text-white min-h-screen z-10 relative">
+    <div className="flex items-center flex-col gap-5 justify-center text-6xl font-bold text-white h-screen z-10 relative">
       <TypingAnimation
         words={["I'm Designing 🎨", "Building 🔨", "So👽", "Stay Tuned 🚀"]}
         loop
