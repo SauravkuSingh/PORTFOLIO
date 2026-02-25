@@ -1,18 +1,16 @@
 import React from 'react'
-import  FloatingLines  from '@/components/FloatingLines'
+import DarkVeil from '../DarkVeil'
 const Background = () => {
   return (
-    <FloatingLines 
-    enabledWaves={["top","middle","bottom"]}
-    // Array - specify line count per wave; Number - same count for all waves
-    lineCount={5}
-    // Array - specify line distance per wave; Number - same distance for all waves
-    lineDistance={5}
-    bendRadius={5}
-    bendStrength={-0.5}
-    interactive={true}
-    parallax={true}
-  />
+
+  <DarkVeil
+  hueShift={0}
+  noiseIntensity={0}
+  scanlineIntensity={0}
+  speed={0.5}
+  scanlineFrequency={0}
+  warpAmount={0}
+/>
   )
 }
 

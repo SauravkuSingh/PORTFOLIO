@@ -1,5 +1,5 @@
 import { Dock, DockIcon } from "@/components/ui/dock";
-import { CircleUserRound, Home as HomeIcon } from "lucide-react";
+import { CircleUserRound, Cpu, Home as HomeIcon } from "lucide-react";
 import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Tech from "@/pages/Tech";
@@ -14,7 +14,9 @@ const Layout = () => {
   };
 
   return (
-    <> <Background/>
+    <> 
+    <Background/>
+
       <div className="min-h-screen relative z-10 inset-0 text-white">
         <Navbar />
 
@@ -46,7 +48,7 @@ const Layout = () => {
           </DockIcon>
           <DockIcon>
             <button onClick={() => scrollToSection("tech")}>
-              <CircleUserRound />
+              <Cpu/>
             </button>
           </DockIcon>
         </Dock>

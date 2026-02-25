@@ -54,7 +54,7 @@ const Home = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen relative z-10 px-6 sm:px-10 pt-32 pb-24 lg:pt-24 lg:pb-12 overflow-hidden">
+    <div className="flex items-center justify-center min-h-screen relative z-2 px-6 sm:px-10 pt-32 pb-24 lg:pt-24 lg:pb-12 overflow-hidden">
       {/* Abstract Background Blurs */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-[120px] mix-blend-screen pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-[120px] mix-blend-screen pointer-events-none" />
@@ -66,7 +66,7 @@ const Home = () => {
         animate="visible"
       >
         {/* Left Content */}
-        <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-8 z-10 w-full">
+        <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-2 z-10 w-full">
           {/* Status Pill */}
           <motion.div variants={itemVariants}>
             <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 shadow-2xl backdrop-blur-xl group cursor-pointer hover:bg-white/10 transition-colors">
@@ -182,7 +182,7 @@ const Home = () => {
             <div className="absolute -inset-0.5 bg-gradient-to-br from-violet-500/30 to-fuchsia-500/30 rounded-[2.6rem] blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10"></div>
           </div>
           <motion.div
-            className="absolute top-10 -left-6 sm:-left-10 px-4 py-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl z-20"
+            className="absolute top-4 -left-2 sm:-left-10 px-4 py-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl z-20"
             animate={{ y: [0, -15, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
@@ -204,7 +204,7 @@ const Home = () => {
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           >
             <div className="flex items-center gap-3">
-              <SiReact className="text-blue-500 text-2xl" />
+              <SiReact className="text-blue-500 text-2xl sm:text-md" />
             </div>
           </motion.div>
 
@@ -249,7 +249,7 @@ const Home = () => {
           </motion.div>
 
           <motion.div
-            className="absolute top-1/2 -right-6 sm:right-10 px-3 py-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl z-20"
+            className="absolute top-1/2 -right-4 sm:right-10 px-3 py-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl z-20"
             animate={{ y: [0, -10, 0] }}
             transition={{
               duration: 3.5,
@@ -262,7 +262,7 @@ const Home = () => {
           </motion.div>
 
           <motion.div
-            className="absolute top-1/2 -left-6 sm:left-5 px-3 py-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl z-20"
+            className="absolute top-1/2 -left-4 sm:left-5 px-3 py-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl z-20"
             animate={{ y: [0, 10, 0] }}
             transition={{
               duration: 4.5,

@@ -1,8 +1,13 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 html, body, #root {
+  background-color: black;
   height: 100%;
   overscroll-behavior: none;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 @custom-variant dark (&:is(.dark *));
