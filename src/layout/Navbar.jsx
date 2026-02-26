@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 import profileImg from "@/assets/profile.png";
+import ContactDialog from "@/pages/ContactDialog";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [time, setTime] = useState("");
+  const [contactOpen, setContactOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -89,13 +91,14 @@ const Navbar = () => {
                   Saurav Singh
                 </span>
               </div>
-              <ShimmerButton className="text-xs px-4 sm:px-6">
+              <ShimmerButton className="text-xs px-4 sm:px-6" onClick={() => setContactOpen(true)}>
                 Let's Connect
               </ShimmerButton>
             </motion.div>
           )}
         </AnimatePresence>
       </motion.nav>
+      <ContactDialog open={contactOpen} onOpenChange={setContactOpen} />
     </div>
   );
 };
