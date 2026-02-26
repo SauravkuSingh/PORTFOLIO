@@ -10,7 +10,6 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Send } from "lucide-react";
-import { Highlighter } from "@/components/ui/highlighter";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 
 const ContactDialog = ({ open, onOpenChange }) => {
