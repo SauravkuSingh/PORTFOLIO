@@ -85,9 +85,9 @@ const Home = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.2, duration: 1 }}
-              className="absolute -top-16 -left-6 sm:-top-20 sm:-left-32 lg:-top-24 lg:-left-32 z-20 pointer-events-none hidden sm:flex items-start"
+              className="absolute -top-12 -left-2 sm:-top-20 sm:-left-32 lg:-top-24 lg:-left-32 z-20 pointer-events-none flex items-start"
             >
-              <div className="relative rotate-[-18deg] flex flex-col items-center">
+              <div className="relative rotate-[-18deg] flex flex-col items-center hidden sm:flex">
                 <div className="relative w-max">
                   {/* Scribble Box */}
                   <svg
@@ -112,7 +112,7 @@ const Home = () => {
                     />
                   </svg>
                   <span
-                    className="text-2xl sm:text-3xl lg:text-4xl text-purple-300/90 font-bold whitespace-nowrap leading-none px-3 py-2  tracking-wide"
+                    className="text-xl sm:text-3xl lg:text-4xl text-purple-300/90 font-bold whitespace-nowrap leading-none px-2 py-1 sm:px-3 sm:py-2 tracking-wide"
                     style={{ fontFamily: "'Caveat', cursive" }}
                   >
                     Hi I'm Saurav
@@ -121,7 +121,7 @@ const Home = () => {
 
                 {/* Arrow pointing down and right */}
                 <svg
-                  className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 text-purple-400/80 -mt-2 ml-10 lg:ml-16"
+                  className="w-12 h-12 sm:w-20 sm:h-20 lg:w-24 lg:h-24 text-purple-400/80 -mt-2 ml-8 sm:ml-10 lg:ml-16"
                   viewBox="0 0 100 100"
                   fill="none"
                   stroke="currentColor"
@@ -187,7 +187,10 @@ const Home = () => {
           >
             <CoolMode options={{ particle: "✨", size: 14 }}>
               <div className="w-full sm:w-auto">
-                <ShimmerButton shimmerColor="#a855f7" className="h-14 px-8 w-full">
+                <ShimmerButton
+                  shimmerColor="#a855f7"
+                  className="h-14 px-8 w-full"
+                >
                   <span className="flex items-center justify-center gap-2 text-base font-semibold text-white">
                     Explore Projects
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -228,12 +231,12 @@ const Home = () => {
 
         {/* Right Content  */}
         <motion.div
-          className="hidden lg:flex justify-center items-center w-full relative perspective-1000 lg:mt-0 py-8 lg:py-0"
+          className="flex justify-center items-center w-full relative perspective-1000 lg:mt-0 py-8 lg:py-0 order-first lg:order-last mt-12 lg:mt-0"
           variants={photoVariants}
           whileHover="hover"
         >
           {/* Inner fixed-size wrapper to keep floating icons accurately positioned across all laptop/desktop screens */}
-          <div className="relative w-[26rem] h-[26rem] xl:w-[28rem] xl:h-[28rem]">
+          <div className="relative w-[18rem] h-[18rem] sm:w-[22rem] sm:h-[22rem] lg:w-[26rem] lg:h-[26rem] xl:w-[28rem] xl:h-[28rem]">
             {/* Main Glass Card containing Image */}
             <div className="absolute inset-0 rounded-[2.5rem] p-3 bg-white/5 border border-white/10 backdrop-blur-2xl shadow-2xl group transition-transform duration-500 transform-gpu preserve-3d cursor-pointer">
               <div className="relative w-full h-full rounded-[2rem] overflow-hidden bg-gradient-to-b from-gray-800 to-black isolate">
@@ -249,7 +252,7 @@ const Home = () => {
 
             {/* Floating UI Elements (Decorative) */}
             <motion.div
-              className="absolute top-8 -left-10 xl:-left-12 px-4 py-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl z-20"
+              className="absolute top-2 -left-2 sm:top-8 sm:-left-10 xl:-left-12 px-4 py-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl z-20 scale-75 sm:scale-100 origin-top-left"
               animate={{ y: [0, -15, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
@@ -269,7 +272,7 @@ const Home = () => {
             </motion.div>
 
             <motion.div
-              className="absolute -top-4 -right-6 xl:-right-8 px-4 py-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl z-20"
+              className="absolute -top-2 -right-2 sm:-top-4 sm:-right-6 xl:-right-8 px-4 py-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl z-20 scale-75 sm:scale-100 origin-top-right"
               animate={{ y: [0, -15, 0] }}
               transition={{
                 duration: 4,
@@ -284,7 +287,7 @@ const Home = () => {
             </motion.div>
 
             <motion.div
-              className="absolute bottom-12 -right-8 xl:-right-10 px-5 py-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl z-20"
+              className="absolute bottom-6 -right-2 sm:bottom-12 sm:-right-8 xl:-right-10 px-5 py-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl z-20 scale-75 sm:scale-100 origin-bottom-right"
               animate={{ y: [0, 15, 0] }}
               transition={{
                 duration: 5,
@@ -312,7 +315,7 @@ const Home = () => {
             </motion.div>
 
             <motion.div
-              className="absolute bottom-16 -left-6 xl:-left-8 px-4 py-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl z-20"
+              className="absolute bottom-10 -left-2 sm:bottom-16 sm:-left-6 xl:-left-8 px-4 py-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl z-20 scale-75 sm:scale-100 origin-bottom-left"
               animate={{ y: [0, 15, 0] }}
               transition={{
                 duration: 5,
@@ -327,7 +330,7 @@ const Home = () => {
             </motion.div>
 
             <motion.div
-              className="absolute top-1/2 -right-10 xl:-right-12 px-4 py-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl z-20"
+              className="absolute top-1/2 -right-2 sm:-right-10 xl:-right-12 px-4 py-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl z-20 scale-75 sm:scale-100 origin-right"
               animate={{ y: [0, -10, 0] }}
               transition={{
                 duration: 3.5,
@@ -340,7 +343,7 @@ const Home = () => {
             </motion.div>
 
             <motion.div
-              className="absolute top-1/2 -left-8 xl:-left-10 px-4 py-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl z-20"
+              className="absolute top-1/2 -left-2 sm:-left-8 xl:-left-10 px-4 py-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl z-20 scale-75 sm:scale-100 origin-left"
               animate={{ y: [0, 10, 0] }}
               transition={{
                 duration: 4.5,

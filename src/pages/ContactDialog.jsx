@@ -45,9 +45,9 @@ const ContactDialog = ({ open, onOpenChange }) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[500px] bg-[#0a0a0a]/80 backdrop-blur-3xl border border-white/10 shadow-2xl text-white rounded-3xl">
+      <DialogContent className="sm:max-w-[500px] w-[95vw] max-w-[95vw] max-h-[90vh] overflow-y-auto p-4 sm:p-6 bg-[#0a0a0a]/80 backdrop-blur-3xl border border-white/10 shadow-2xl text-white rounded-3xl">
         <DialogHeader>
-          <DialogTitle className="text-3xl font-bold text-center tracking-tight mt-2">
+          <DialogTitle className="text-2xl sm:text-3xl font-bold text-center tracking-tight mt-2">
             Let's{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-indigo-400">
               Connect
