@@ -60,7 +60,6 @@ const Layout = () => {
             <section id="contact">
               <Footer />
             </section>
-            
 
             {/* DOCK */}
             <Dock className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 text-white">

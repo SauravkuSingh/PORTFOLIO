@@ -9,6 +9,8 @@ import {
   Linkedin,
   Twitter,
   Sparkles,
+  FolderOpen,
+  Code2,
 } from "lucide-react";
 import profileImg from "@/assets/profile.png";
 import {
@@ -55,10 +57,7 @@ const Home = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen relative z-2 px-6 sm:px-10 pt-32 pb-24 lg:pt-24 lg:pb-12 overflow-hidden">
-      {/* Abstract Background Blurs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-[120px] mix-blend-screen pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-[120px] mix-blend-screen pointer-events-none" />
+    <div className="flex items-center justify-center min-h-screen relative z-2 px-6 sm:px-10 pt-36 sm:pt-40 lg:pt-40 pb-24 lg:pb-12 overflow-hidden">
 
       <motion.div
         className="max-w-7xl w-full mx-auto  grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-8 items-center"
@@ -67,7 +66,7 @@ const Home = () => {
         animate="visible"
       >
         {/* Left Content */}
-        <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-2 z-10 w-full">
+        <div className="flex flex-col items-center lg:items-start text-center lg:text-left gap-2 z-10 w-full order-2 lg:order-1 mt-8 lg:mt-0">
           {/* Status Pill */}
           <motion.div variants={itemVariants}>
             <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 shadow-2xl backdrop-blur-xl group cursor-pointer hover:bg-white/10 transition-colors">
@@ -87,7 +86,7 @@ const Home = () => {
               transition={{ delay: 1.2, duration: 1 }}
               className="absolute -top-12 -left-2 sm:-top-20 sm:-left-32 lg:-top-24 lg:-left-32 z-20 pointer-events-none flex items-start"
             >
-              <div className="relative rotate-[-18deg] flex flex-col items-center hidden sm:flex">
+              <div className="relative rotate-[-18deg] flex flex-col items-center hidden lg:flex">
                 <div className="relative w-max">
                   {/* Scribble Box */}
                   <svg
@@ -231,7 +230,7 @@ const Home = () => {
 
         {/* Right Content  */}
         <motion.div
-          className="flex justify-center items-center w-full relative perspective-1000 lg:mt-0 py-8 lg:py-0 order-first lg:order-last mt-12 lg:mt-0"
+          className="flex justify-center items-center w-full relative perspective-1000 lg:mt-0 py-8 lg:py-0 order-1 lg:order-2 mt-8 lg:mt-0"
           variants={photoVariants}
           whileHover="hover"
         >
@@ -354,6 +353,59 @@ const Home = () => {
             >
               <SiTypescript className="text-blue-500 text-3xl shadow-blue-500/50 drop-shadow-lg" />
             </motion.div>
+          </div>
+        </motion.div>
+
+        {/* Stats Section */}
+        <motion.div
+          className="order-3 col-span-1 lg:col-span-2 w-full max-w-5xl mx-auto mt-4 lg:mt-12 z-10"
+          variants={itemVariants}
+        >
+          <div className="relative p-[1px] rounded-3xl lg:rounded-[2.5rem] overflow-hidden bg-gradient-to-r from-white/10 via-white/5 to-white/10 group shadow-2xl">
+            {/* Ambient Background Glow */}
+            <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-fuchsia-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl" />
+
+            <div className="bg-[#0a0a0a]/80 backdrop-blur-2xl rounded-3xl lg:rounded-[2.4rem] flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-white/5 p-2 lg:p-4 relative isolate">
+              {[
+                {
+                  icon: Github,
+                  value: "1600+",
+                  label: "GITHUB COMMITS",
+                  gradient: "from-fuchsia-500 to-purple-600",
+                },
+                {
+                  icon: FolderOpen,
+                  value: "10+",
+                  label: "PROJECTS DONE",
+                  gradient: "from-purple-500 to-indigo-500",
+                },
+                {
+                  icon: Code2,
+                  value: "2+",
+                  label: "YEARS CODING",
+                  gradient: "from-cyan-400 to-blue-600",
+                },
+              ].map((stat, i) => (
+                <div
+                  key={i}
+                  className="flex-1 flex items-center justify-center md:justify-start gap-4 lg:gap-6 py-6 lg:py-8 px-4 lg:px-12 group/stat relative overflow-hidden rounded-2xl lg:rounded-3xl transition-all duration-300 hover:bg-white/5"
+                >
+                  <div
+                    className={`w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-gradient-to-br ${stat.gradient} flex items-center justify-center shadow-lg group-hover/stat:scale-110 group-hover/stat:-rotate-3 transition-transform duration-300 flex-shrink-0`}
+                  >
+                    <stat.icon className="w-6 h-6 lg:w-7 lg:h-7 text-white" />
+                  </div>
+                  <div className="flex flex-col items-start min-w-[120px]">
+                    <h3 className="text-3xl lg:text-4xl font-bold text-white tracking-tight">
+                      {stat.value}
+                    </h3>
+                    <p className="text-[11px] lg:text-sm font-semibold text-gray-400 tracking-widest uppercase mt-1 group-hover/stat:text-gray-300 transition-colors">
+                      {stat.label}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </motion.div>
       </motion.div>
