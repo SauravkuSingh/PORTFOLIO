@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
-import profileImg from "@/assets/profile.png";
-import ContactDialog from "@/pages/ContactDialog";
+import ContactDialog from "@/sections/ContactDialog";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -83,7 +82,7 @@ const Navbar = () => {
                 <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-linear-to-r from-purple-500 to-blue-500 flex items-center justify-center text-sm font-bold text-white shadow-inner">
                   <img
                     className="rounded-full w-full h-full object-cover"
-                    src={profileImg}
+                    src="/assets/profile.png"
                     alt="Profile"
                   />
                 </div>
