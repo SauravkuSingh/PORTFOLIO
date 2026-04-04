@@ -1,6 +1,5 @@
 import { Timeline } from "@/components/ui/timeline";
 import { motion } from "framer-motion";
-
 const About = () => {
   const data = [
     {
@@ -8,7 +7,7 @@ const About = () => {
       content: (
         <div>
           <h4 className="text-2xl md:text-3xl font-bold mb-2 text-white">
-            Frontend Engineer
+            Frontend Developer
           </h4>
           <h5 className="text-lg text-blue-400 font-medium mb-4">
             @ Empmonitor
@@ -96,7 +95,7 @@ const About = () => {
             Bachelor of Technology (B.Tech)
           </h4>
           <h5 className="text-lg text-indigo-400 font-medium mb-4">
-            Chhattisgarh Swami Vivekanand Technical University (CSVTU)
+           Shri Shankaracharya Technical Campus ,Bhilai (SSTC)
           </h5>
 
           <p className="text-neutral-300 mb-6 text-sm md:text-base leading-relaxed">
@@ -112,12 +111,21 @@ const About = () => {
             <li>Built frontend-focused applications</li>
           </ul>
 
-          <div className="relative group">
-            <img
-              src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop"
-              alt="University"
-              className="rounded-xl object-cover h-40 md:h-56 w-full shadow-xl transition-transform duration-500 group-hover:scale-105"
-            />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="relative group">
+              <img
+                src="/assets/college.webp"
+                alt="University"
+                className="rounded-xl object-cover h-40 md:h-56 w-full shadow-xl transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+            <div className="relative group">
+              <img
+                src="/assets/campus.webp"
+                alt="University"
+                className="rounded-xl object-cover h-40 md:h-56 w-full shadow-xl transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
           </div>
         </div>
       ),
