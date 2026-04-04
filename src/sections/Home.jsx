@@ -239,7 +239,7 @@ const Home = () => {
             <div className="absolute inset-0 rounded-[2.5rem] p-3 bg-white/5 border border-white/10 backdrop-blur-2xl shadow-2xl group transition-transform duration-500 transform-gpu preserve-3d cursor-pointer">
               <div className="relative w-full h-full rounded-[2rem] overflow-hidden bg-gradient-to-b from-gray-800 to-black isolate">
                 <img
-                  src="/assets/profile.png"
+                  src="/assets/profile.webp"
                   alt="Profile"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />

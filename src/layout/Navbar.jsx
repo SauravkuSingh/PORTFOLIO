@@ -82,7 +82,7 @@ const Navbar = () => {
                 <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-linear-to-r from-purple-500 to-blue-500 flex items-center justify-center text-sm font-bold text-white shadow-inner">
                   <img
                     className="rounded-full w-full h-full object-cover"
-                    src="/assets/profile.png"
+                    src="/assets/profile.webp"
                     alt="Profile"
                   />
                 </div>
