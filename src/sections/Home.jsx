@@ -172,7 +172,7 @@ const Home = () => {
             variants={itemVariants}
             className="text-lg text-gray-400 max-w-xl leading-relaxed font-light"
           >
-            I’m Saurav Singh, a frontend developer based in Bhilai, specializing
+            I’m Saurav Singh, a fullstack developer based in Bhilai, specializing
             in React.js, Next.js, and modern web technologies. I build fast,
             responsive, and user-friendly web applications for startups and
             businesses.
@@ -210,8 +210,8 @@ const Home = () => {
             className="flex items-center gap-6 mt-6"
           >
             {[
-              { Icon: Github, href: "https://github.com" },
-              { Icon: Linkedin, href: "https://linkedin.com" },
+              { Icon: Github, href: "https://github.com/SauravkuSingh" },
+              { Icon: Linkedin, href: "https://www.linkedin.com/in/saurav-singh-fsdev/" },
               // { Icon: Twitter, href: "https://twitter.com" },
             ].map(({ Icon, href }, i) => (
               <a
