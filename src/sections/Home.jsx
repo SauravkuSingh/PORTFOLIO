@@ -357,48 +357,48 @@ const Home = () => {
 
         {/* Stats Section */}
         <motion.div
-          className="order-3 col-span-1 lg:col-span-2 w-full max-w-5xl mx-auto mt-4 lg:mt-12 z-10"
+          className="order-3 col-span-1 lg:col-span-2 w-full max-w-4xl mx-auto mt-4 lg:mt-10 z-10"
           variants={itemVariants}
         >
-          <div className="relative p-[1px] rounded-3xl lg:rounded-[2.5rem] overflow-hidden bg-gradient-to-r from-white/10 via-white/5 to-white/10 group shadow-2xl">
+          <div className="relative p-[1px] rounded-2xl lg:rounded-3xl overflow-hidden bg-gradient-to-r from-white/10 via-white/5 to-white/10 group shadow-xl">
             {/* Ambient Background Glow */}
             <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 via-fuchsia-500/10 to-cyan-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl" />
 
-            <div className="bg-[#0a0a0a]/80 backdrop-blur-2xl rounded-3xl lg:rounded-[2.4rem] flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-white/5 p-2 lg:p-4 relative isolate">
+            <div className="bg-[#0a0a0a]/80 backdrop-blur-2xl rounded-2xl lg:rounded-[1.4rem] flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-white/5 relative isolate">
               {[
                 {
                   icon: Github,
                   value: "1600+",
-                  label: "GITHUB COMMITS",
+                  label: "Commits Pushed",
                   gradient: "from-fuchsia-500 to-purple-600",
                 },
                 {
                   icon: FolderOpen,
                   value: "10+",
-                  label: "PROJECTS DONE",
+                  label: "Projects Shipped",
                   gradient: "from-purple-500 to-indigo-500",
                 },
                 {
                   icon: Code2,
                   value: "2+",
-                  label: "YEARS CODING",
+                  label: "Years Of Proffesional Experience",
                   gradient: "from-cyan-400 to-blue-600",
                 },
               ].map((stat, i) => (
                 <div
                   key={i}
-                  className="flex-1 flex items-center justify-center md:justify-start gap-4 lg:gap-6 py-6 lg:py-8 px-4 lg:px-12 group/stat relative overflow-hidden rounded-2xl lg:rounded-3xl transition-all duration-300 hover:bg-white/5"
+                  className="flex-1 flex items-center justify-center md:justify-start gap-4 py-4 lg:py-5 px-4 lg:px-8 group/stat relative overflow-hidden transition-all duration-300 hover:bg-white/5"
                 >
                   <div
-                    className={`w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-gradient-to-br ${stat.gradient} flex items-center justify-center shadow-lg group-hover/stat:scale-110 group-hover/stat:-rotate-3 transition-transform duration-300 flex-shrink-0`}
+                    className={`w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-gradient-to-br ${stat.gradient} flex items-center justify-center shadow-md group-hover/stat:scale-110 group-hover/stat:-rotate-3 transition-transform duration-300 flex-shrink-0`}
                   >
-                    <stat.icon className="w-6 h-6 lg:w-7 lg:h-7 text-white" />
+                    <stat.icon className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
                   </div>
-                  <div className="flex flex-col items-start min-w-[120px]">
-                    <h3 className="text-3xl lg:text-4xl font-bold text-white tracking-tight">
+                  <div className="flex flex-col items-start">
+                    <h3 className="text-2xl lg:text-3xl font-bold text-white tracking-tight leading-none">
                       {stat.value}
                     </h3>
-                    <p className="text-[11px] lg:text-sm font-semibold text-gray-400 tracking-widest uppercase mt-1 group-hover/stat:text-gray-300 transition-colors">
+                    <p className="text-[10px] lg:text-xs font-semibold text-gray-400 tracking-wider uppercase mt-1.5 group-hover/stat:text-gray-300 transition-colors">
                       {stat.label}
                     </p>
                   </div>

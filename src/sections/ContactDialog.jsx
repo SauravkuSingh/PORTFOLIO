@@ -122,13 +122,11 @@ const ContactDialog = ({ open, onOpenChange }) => {
           </div>
 
           <div className="flex justify-center mt-4 w-full pb-2">
-            <button type="submit" className="w-full">
-              <ShimmerButton shimmerColor="#a855f7" className="w-full h-14">
-                <span className="flex items-center justify-center gap-2 text-base font-semibold text-white tracking-wide">
-                  Send Message <Send className="ml-2 w-5 h-5" />
-                </span>
-              </ShimmerButton>
-            </button>
+            <ShimmerButton type="submit" shimmerColor="#a855f7" className="w-full h-14">
+              <span className="flex items-center justify-center gap-2 text-base font-semibold text-white tracking-wide">
+                Send Message <Send className="ml-2 w-5 h-5" />
+              </span>
+            </ShimmerButton>
           </div>
         </form>
       </DialogContent>

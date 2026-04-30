@@ -1,63 +1,90 @@
 "use client";
 
-import { Dock, DockIcon } from "@/components/ui/dock";
-import { CircleUserRound, Cpu, Home as HomeIcon } from "lucide-react";
+import { useState, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Home from "@/sections/Home";
 import About from "@/sections/About";
 import Tech from "@/sections/Tech";
+import Projects from "@/sections/Projects";
+import FeaturedProjects from "@/sections/FeaturedProjects";
+import ProjectDetail from "@/sections/ProjectDetail";
+import Blogs from "@/sections/Blogs";
 import Footer from "@/sections/Footer";
 import Navbar from "@/layout/Navbar";
 import Background from "@/components/background/Background";
+import { getProjectBySlug } from "@/data/projects";
 
 const Page = () => {
-  const scrollToSection = (id) => {
-    document.getElementById(id)?.scrollIntoView({
-      behavior: "smooth",
-    });
+  const [activeTab, setActiveTab] = useState("home");
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [activeTab, selectedProject]);
+
+  const handleSelectProject = (slug) => {
+    setSelectedProject(slug);
+    setActiveTab("projects");
   };
+
+  const handleTabChange = (tab) => {
+    setSelectedProject(null);
+    setActiveTab(tab);
+  };
+
+  const project = selectedProject ? getProjectBySlug(selectedProject) : null;
+
+  const renderActive = () => {
+    if (project) {
+      return (
+        <ProjectDetail
+          project={project}
+          onBack={() => setSelectedProject(null)}
+        />
+      );
+    }
+    switch (activeTab) {
+      case "about":
+        return <About />;
+      case "projects":
+        return <Projects onSelectProject={handleSelectProject} />;
+      case "blogs":
+        return <Blogs />;
+      case "home":
+      default:
+        return (
+          <>
+            <Home />
+            <About />
+            <Tech />
+            <FeaturedProjects
+              onViewAll={() => setActiveTab("projects")}
+              onSelectProject={handleSelectProject}
+            />
+          </>
+        );
+    }
+  };
+
+  const viewKey = project ? `detail-${project.slug}` : activeTab;
 
   return (
     <>
       <Background />
       <div className="min-h-screen relative z-10 text-white">
-        <Navbar />
-
-        {/* SECTIONS */}
-        <section id="home">
-          <Home />
-        </section>
-
-        <section id="about">
-          <About />
-        </section>
-
-        <section id="tech">
-          <Tech />
-        </section>
-
-        <section id="contact">
-          <Footer />
-        </section>
-
-        {/* DOCK */}
-        <Dock className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 text-white">
-          <DockIcon>
-            <button onClick={() => scrollToSection("home")}>
-              <HomeIcon />
-            </button>
-          </DockIcon>
-
-          <DockIcon>
-            <button onClick={() => scrollToSection("about")}>
-              <CircleUserRound />
-            </button>
-          </DockIcon>
-          <DockIcon>
-            <button onClick={() => scrollToSection("tech")}>
-              <Cpu />
-            </button>
-          </DockIcon>
-        </Dock>
+        <Navbar activeTab={activeTab} onTabChange={handleTabChange} />
+        <AnimatePresence mode="wait">
+          <motion.main
+            key={viewKey}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {renderActive()}
+          </motion.main>
+        </AnimatePresence>
+        <Footer />
       </div>
     </>
   );
