@@ -1,3 +1,6 @@
+"use client";
+
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink, Code2, Check } from "lucide-react";
 import {
@@ -39,22 +42,25 @@ const TECH = {
   "Framer Motion": { Icon: SiFramer, color: "text-fuchsia-400" },
 };
 
-const ProjectDetail = ({ project, onBack }) => {
+const ProjectDetail = ({ project }) => {
   return (
     <section className="relative z-2 px-6 sm:px-10 pt-32 pb-20 lg:pt-32 lg:pb-28">
       <div className="max-w-6xl mx-auto">
         {/* Back link */}
-        <motion.button
-          type="button"
-          onClick={onBack}
+        <motion.div
           initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.4 }}
-          className="group inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors mb-8"
+          className="mb-8"
         >
-          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
-          Back to Projects
-        </motion.button>
+          <Link
+            href="/projects"
+            className="group inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
+            Back to Projects
+          </Link>
+        </motion.div>
 
         {/* Hero */}
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">

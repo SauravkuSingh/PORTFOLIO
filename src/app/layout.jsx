@@ -1,4 +1,5 @@
 import "./globals.css";
+import Shell from "./shell";
 
 export const metadata = {
  title: "Saurav Singh – Full Stack Developer | Bhilai, India (React & Next.js)",
@@ -46,7 +47,7 @@ export default function RootLayout({ children }) {
         <link rel="icon" type="image/png" href="/favicon.png" />
       </head>
       <body suppressHydrationWarning>
-        {children}
+        <Shell>{children}</Shell>
       </body>
     </html>
   );

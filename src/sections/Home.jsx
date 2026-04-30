@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useInView, animate } from "framer-motion";
 import { TypingAnimation } from "@/components/ui/typing-animation";
 import { CoolMode } from "@/components/ui/cool-mode";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
@@ -10,7 +11,7 @@ import {
   Twitter,
   Sparkles,
   FolderOpen,
-  Code2,
+  Users,
 } from "lucide-react";
 import {
   SiNextdotjs,
@@ -19,6 +20,29 @@ import {
   SiTypescript,
 } from "react-icons/si";
 import RotatingText from "@/components/RotatingText";
+
+const StatCounter = ({ target, suffix = "", duration = 2 }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const [display, setDisplay] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) return;
+    const controls = animate(0, target, {
+      duration,
+      ease: [0.16, 1, 0.3, 1],
+      onUpdate: (v) => setDisplay(Math.round(v)),
+    });
+    return () => controls.stop();
+  }, [isInView, target, duration]);
+
+  return (
+    <span ref={ref}>
+      {display.toLocaleString()}
+      {suffix}
+    </span>
+  );
+};
 
 const Home = () => {
   const containerVariants = {
@@ -368,26 +392,32 @@ const Home = () => {
               {[
                 {
                   icon: Github,
-                  value: "1600+",
+                  value: 1600,
+                  suffix: "+",
                   label: "Commits Pushed",
+                  detail: "across 25+ repositories",
                   gradient: "from-fuchsia-500 to-purple-600",
                 },
                 {
                   icon: FolderOpen,
-                  value: "10+",
+                  value: 10,
+                  suffix: "+",
                   label: "Projects Shipped",
+                  detail: "freelance & personal builds",
                   gradient: "from-purple-500 to-indigo-500",
                 },
                 {
-                  icon: Code2,
-                  value: "2+",
-                  label: "Years Of Proffesional Experience",
+                  icon: Users,
+                  value: 5,
+                  suffix: "+",
+                  label: "Freelance Clients",
+                  detail: "startups & small businesses",
                   gradient: "from-cyan-400 to-blue-600",
                 },
               ].map((stat, i) => (
                 <div
                   key={i}
-                  className="flex-1 flex items-center justify-center md:justify-start gap-4 py-4 lg:py-5 px-4 lg:px-8 group/stat relative overflow-hidden transition-all duration-300 hover:bg-white/5"
+                  className="flex-1 flex items-center justify-center md:justify-start gap-4 py-4 lg:py-5 px-4 lg:px-8 group/stat relative transition-all duration-300 hover:bg-white/5"
                 >
                   <div
                     className={`w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-gradient-to-br ${stat.gradient} flex items-center justify-center shadow-md group-hover/stat:scale-110 group-hover/stat:-rotate-3 transition-transform duration-300 flex-shrink-0`}
@@ -396,10 +426,13 @@ const Home = () => {
                   </div>
                   <div className="flex flex-col items-start">
                     <h3 className="text-2xl lg:text-3xl font-bold text-white tracking-tight leading-none">
-                      {stat.value}
+                      <StatCounter target={stat.value} suffix={stat.suffix} />
                     </h3>
                     <p className="text-[10px] lg:text-xs font-semibold text-gray-400 tracking-wider uppercase mt-1.5 group-hover/stat:text-gray-300 transition-colors">
                       {stat.label}
+                    </p>
+                    <p className="text-[10px] text-gray-500 mt-1 leading-tight max-w-[160px] opacity-0 -translate-y-1 group-hover/stat:opacity-100 group-hover/stat:translate-y-0 transition-all duration-300">
+                      {stat.detail}
                     </p>
                   </div>
                 </div>

@@ -1,12 +1,16 @@
+"use client";
+
 import { useState } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, Plus } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { renderMockup } from "@/components/ProjectMockups";
 import { PROJECTS } from "@/data/projects";
 
 const FILTERS = ["All", "Web Apps", "Full Stack", "Frontend"];
+const MotionLink = motion.create(Link);
 
-const Projects = ({ onSelectProject }) => {
+const Projects = () => {
   const [filter, setFilter] = useState("All");
 
   const visible =
@@ -66,10 +70,9 @@ const Projects = ({ onSelectProject }) => {
         <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 gap-5">
           <AnimatePresence mode="popLayout">
             {visible.map((project, i) => (
-              <motion.button
+              <MotionLink
                 key={project.slug}
-                type="button"
-                onClick={() => onSelectProject?.(project.slug)}
+                href={`/projects/${project.slug}`}
                 layout
                 initial={{ opacity: 0, y: 20, scale: 0.96 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -80,7 +83,7 @@ const Projects = ({ onSelectProject }) => {
                   ease: [0.16, 1, 0.3, 1],
                 }}
                 whileHover={{ y: -4 }}
-                className="group relative flex flex-col text-left rounded-2xl border border-white/10 bg-[#0a0a0a]/60 backdrop-blur-xl p-3 hover:border-white/20 hover:bg-[#0a0a0a]/80 transition-colors shadow-xl cursor-pointer"
+                className="group relative flex flex-col text-left rounded-2xl border border-white/10 bg-[#0a0a0a]/60 backdrop-blur-xl p-3 hover:border-white/20 hover:bg-[#0a0a0a]/80 transition-colors shadow-xl"
               >
                 <div
                   className={`relative h-44 sm:h-48 rounded-xl overflow-hidden bg-gradient-to-br ${project.accent}`}
@@ -111,27 +114,11 @@ const Projects = ({ onSelectProject }) => {
                     </span>
                   ))}
                 </div>
-              </motion.button>
+              </MotionLink>
             ))}
           </AnimatePresence>
         </motion.div>
 
-        {/* View More button */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="flex justify-center mt-10 lg:mt-14"
-        >
-          <button
-            type="button"
-            className="group inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 backdrop-blur-md text-white text-sm font-medium transition-colors shadow-lg"
-          >
-            <Plus className="w-4 h-4 group-hover:rotate-90 transition-transform duration-300" />
-            View More Projects
-          </button>
-        </motion.div>
       </div>
     </section>
   );
