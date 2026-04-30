@@ -140,7 +140,6 @@ const RotatingText = forwardRef((props, ref) => {
           className={cn(
             splitBy === 'lines' ? 'flex flex-col w-full' : 'flex flex-wrap whitespace-pre-wrap relative'
           )}
-          layout
           aria-hidden="true">
           {elements.map((wordObj, wordIndex, array) => {
             const previousCharsCount = array.slice(0, wordIndex).reduce((sum, word) => sum + word.characters.length, 0);
