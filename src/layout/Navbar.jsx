@@ -6,12 +6,13 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 import ContactDialog from "@/sections/ContactDialog";
+import { Home, User, Briefcase, FileText, Send } from "lucide-react";
 
 const TABS = [
-  { id: "home", label: "Home", href: "/" },
-  { id: "about", label: "About", href: "/about" },
-  { id: "projects", label: "Projects", href: "/projects" },
-  { id: "blogs", label: "Blogs", href: "/blogs" },
+  { id: "home", label: "Home", href: "/", icon: Home },
+  { id: "about", label: "About", href: "/about", icon: User },
+  { id: "projects", label: "Projects", href: "/projects", icon: Briefcase },
+  { id: "blogs", label: "Blogs", href: "/blogs", icon: FileText },
 ];
 
 const getActiveId = (pathname) => {
@@ -98,7 +99,7 @@ const Navbar = () => {
               animate={{ opacity: 1, filter: "blur(0px)" }}
               exit={{ opacity: 0, filter: "blur(4px)" }}
               transition={{ duration: 0.2 }}
-              className="flex items-center justify-between w-full gap-3 sm:gap-5"
+              className="flex items-center justify-between w-full gap-2 sm:gap-5 px-2 sm:px-0"
             >
               {/* Avatar + name */}
               <Link href="/" className="flex items-center gap-2 sm:gap-3 shrink-0">
@@ -116,44 +117,51 @@ const Navbar = () => {
 
               {/* Tabs */}
               <div className="flex items-center gap-1 sm:gap-2">
-                {TABS.map((tab) => (
-                  <Link
-                    key={tab.id}
-                    href={tab.href}
-                    className={`relative px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium whitespace-nowrap transition-colors ${
-                      activeId === tab.id
-                        ? "text-white"
-                        : "text-gray-400 hover:text-white"
-                    }`}
-                  >
-                    {activeId === tab.id && (
-                      <motion.span
-                        layoutId="activeNavTabUnderline"
-                        className="absolute left-1/2 -bottom-0.5 h-[2px] w-6 -translate-x-1/2 rounded-full bg-gradient-to-r from-violet-400 via-fuchsia-400 to-indigo-400 shadow-[0_0_10px_rgba(168,85,247,0.7)]"
-                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                      />
-                    )}
-                    <motion.span
-                      className="relative z-10 inline-block"
-                      animate={
+                {TABS.map((tab) => {
+                  const Icon = tab.icon;
+                  return (
+                    <Link
+                      key={tab.id}
+                      href={tab.href}
+                      className={`relative px-2 sm:px-4 py-2 flex items-center justify-center text-xs sm:text-sm font-medium whitespace-nowrap transition-colors ${
                         activeId === tab.id
-                          ? { y: -1, scale: 1.04 }
-                          : { y: 0, scale: 1 }
-                      }
-                      transition={{ type: "spring", stiffness: 380, damping: 28 }}
+                          ? "text-white"
+                          : "text-gray-400 hover:text-white"
+                      }`}
+                      title={tab.label}
                     >
-                      {tab.label}
-                    </motion.span>
-                  </Link>
-                ))}
+                      {activeId === tab.id && (
+                        <motion.span
+                          layoutId="activeNavTabUnderline"
+                          className="absolute left-1/2 -bottom-0.5 h-[2px] w-6 -translate-x-1/2 rounded-full bg-gradient-to-r from-violet-400 via-fuchsia-400 to-indigo-400 shadow-[0_0_10px_rgba(168,85,247,0.7)]"
+                          transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                        />
+                      )}
+                      <motion.span
+                        className="relative z-10 flex items-center justify-center"
+                        animate={
+                          activeId === tab.id
+                            ? { y: -1, scale: 1.04 }
+                            : { y: 0, scale: 1 }
+                        }
+                        transition={{ type: "spring", stiffness: 380, damping: 28 }}
+                      >
+                        <Icon className="w-4 h-4 sm:hidden" />
+                        <span className="hidden sm:inline">{tab.label}</span>
+                      </motion.span>
+                    </Link>
+                  );
+                })}
               </div>
 
               {/* Connect button */}
               <ShimmerButton
-                className="hidden sm:flex text-xs px-4 sm:px-6 shrink-0"
+                className="flex items-center justify-center text-xs px-4 sm:px-6 shrink-0"
                 onClick={() => setContactOpen(true)}
+                title="Let's Connect"
               >
-                Let's Connect
+                <Send className="w-4 h-4 sm:hidden" />
+                <span className="hidden sm:inline">Let's Connect</span>
               </ShimmerButton>
             </motion.div>
           )}
