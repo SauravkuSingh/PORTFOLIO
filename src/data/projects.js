@@ -20,6 +20,7 @@ export const PROJECTS = [
     url: "shopsphere.dev",
     liveUrl: "#",
     codeUrl: "#",
+    image: "", // Example: "/assets/projects/shopsphere.png"
     accent: "from-blue-500/40 via-indigo-500/30 to-purple-600/40",
     mockup: "shop",
     overview:
@@ -54,6 +55,7 @@ export const PROJECTS = [
     url: "devconnect.app",
     liveUrl: "#",
     codeUrl: "#",
+    image: "", // Example: "/assets/projects/devconnect.png"
     accent: "from-fuchsia-500/40 via-pink-500/30 to-rose-500/40",
     mockup: "social",
     overview:
@@ -88,6 +90,7 @@ export const PROJECTS = [
     url: "tasks.local",
     liveUrl: "#",
     codeUrl: "#",
+    image: "", // Example: "/assets/projects/tasks.png"
     accent: "from-cyan-400/40 via-teal-400/30 to-emerald-500/40",
     mockup: "tasks",
     overview:
@@ -122,6 +125,7 @@ export const PROJECTS = [
     url: "weather.app",
     liveUrl: "#",
     codeUrl: "#",
+    image: "", // Example: "/assets/projects/weather.png"
     accent: "from-sky-400/40 via-blue-500/30 to-indigo-600/40",
     mockup: "weather",
     overview:

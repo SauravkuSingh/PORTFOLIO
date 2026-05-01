@@ -97,7 +97,18 @@ export const MockupWeather = () => (
   </div>
 );
 
-export const renderMockup = (kind) => {
+export const renderProjectPreview = (project) => {
+  if (project.image) {
+    return (
+      <img
+        src={project.image}
+        alt={project.title}
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+    );
+  }
+
+  const kind = project.mockup;
   if (kind === "shop") return <MockupShop />;
   if (kind === "social") return <MockupSocial />;
   if (kind === "tasks") return <MockupTasks />;

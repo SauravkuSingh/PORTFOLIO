@@ -21,7 +21,7 @@ import {
 } from "react-icons/si";
 import { Safari } from "@/components/ui/safari";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
-import { renderMockup } from "@/components/ProjectMockups";
+import { renderProjectPreview } from "@/components/ProjectMockups";
 
 const TECH = {
   "Next.js": { Icon: SiNextdotjs, color: "text-white" },
@@ -119,7 +119,7 @@ const ProjectDetail = ({ project }) => {
                 className={`absolute inset-0 bg-gradient-to-br ${project.accent}`}
               >
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.12),transparent_60%)]" />
-                {renderMockup(project.mockup)}
+                {renderProjectPreview(project)}
               </div>
             </Safari>
           </motion.div>
@@ -242,7 +242,7 @@ const ProjectDetail = ({ project }) => {
                   className={`relative h-24 sm:h-28 rounded-lg overflow-hidden bg-gradient-to-br ${project.accent}`}
                 >
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.12),transparent_60%)]" />
-                  {renderMockup(project.mockup)}
+                  {renderProjectPreview(project)}
                 </div>
               </div>
             ))}

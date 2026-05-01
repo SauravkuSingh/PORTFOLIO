@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ArrowRight, Sparkles } from "lucide-react";
-import { renderMockup } from "@/components/ProjectMockups";
+import { renderProjectPreview } from "@/components/ProjectMockups";
 import { PROJECTS } from "@/data/projects";
 
 const MotionLink = motion.create(Link);
@@ -94,7 +94,7 @@ const FeaturedProjects = () => {
                   className={`relative h-44 sm:h-48 rounded-xl overflow-hidden bg-gradient-to-br ${project.accent}`}
                 >
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.18),transparent_60%)]" />
-                  {renderMockup(project.mockup)}
+                  {renderProjectPreview(project)}
                   <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/50 backdrop-blur-md border border-white/15 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:rotate-0 -rotate-45 transition-all duration-300">
                     <ArrowUpRight className="w-4 h-4 text-white" />
                   </div>

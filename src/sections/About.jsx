@@ -1,3 +1,5 @@
+"use client";
+
 import { Timeline } from "@/components/ui/timeline";
 import { motion } from "framer-motion";
 const About = () => {

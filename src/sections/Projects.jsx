@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { renderMockup } from "@/components/ProjectMockups";
+import { renderProjectPreview } from "@/components/ProjectMockups";
 import { PROJECTS } from "@/data/projects";
 
 const FILTERS = ["All", "Web Apps", "Full Stack", "Frontend"];
@@ -89,7 +89,7 @@ const Projects = () => {
                   className={`relative h-44 sm:h-48 rounded-xl overflow-hidden bg-gradient-to-br ${project.accent}`}
                 >
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.12),transparent_60%)]" />
-                  {renderMockup(project.mockup)}
+                  {renderProjectPreview(project)}
                   <div className="absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                     <ArrowUpRight className="w-3.5 h-3.5 text-white" />
                   </div>
