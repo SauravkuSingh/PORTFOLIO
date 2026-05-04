@@ -2,7 +2,16 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowLeft, ExternalLink, Code2, Check } from "lucide-react";
+import {
+  ArrowLeft,
+  ExternalLink,
+  Code2,
+  Check,
+  Sparkles,
+  BarChart3,
+  ImageDown,
+  Bitcoin,
+} from "lucide-react";
 import {
   SiNextdotjs,
   SiReact,
@@ -18,10 +27,24 @@ import {
   SiExpress,
   SiJsonwebtokens,
   SiFramer,
+  SiGithub,
+  SiReactrouter,
 } from "react-icons/si";
 import { Safari } from "@/components/ui/safari";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
-import { renderProjectPreview } from "@/components/ProjectMockups";
+
+const ProjectImage = ({ project, className = "" }) => (
+  <div className={`absolute inset-0 bg-gradient-to-br ${project.accent} ${className}`}>
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.12),transparent_60%)]" />
+    {project.image && (
+      <img
+        src={project.image}
+        alt={project.title}
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+    )}
+  </div>
+);
 
 const TECH = {
   "Next.js": { Icon: SiNextdotjs, color: "text-white" },
@@ -40,6 +63,12 @@ const TECH = {
   LocalStorage: { Icon: SiJavascript, color: "text-yellow-400" },
   "OpenWeather API": { Icon: SiJavascript, color: "text-sky-400" },
   "Framer Motion": { Icon: SiFramer, color: "text-fuchsia-400" },
+  "Gemini API": { Icon: Sparkles, color: "text-violet-400" },
+  "GitHub API": { Icon: SiGithub, color: "text-white" },
+  Recharts: { Icon: BarChart3, color: "text-emerald-400" },
+  html2canvas: { Icon: ImageDown, color: "text-amber-400" },
+  "React Router": { Icon: SiReactrouter, color: "text-red-400" },
+  "CoinGecko API": { Icon: Bitcoin, color: "text-yellow-400" },
 };
 
 const ProjectDetail = ({ project }) => {
@@ -115,12 +144,7 @@ const ProjectDetail = ({ project }) => {
             transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <Safari url={project.url}>
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${project.accent}`}
-              >
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.12),transparent_60%)]" />
-                {renderProjectPreview(project)}
-              </div>
+              <ProjectImage project={project} />
             </Safari>
           </motion.div>
         </div>
@@ -191,7 +215,9 @@ const ProjectDetail = ({ project }) => {
                           className={`w-6 h-6 ${meta.color || "text-white"}`}
                         />
                       ) : (
-                        <div className="w-6 h-6 rounded bg-white/10" />
+                        <div className="w-6 h-6 rounded-md bg-white/10 border border-white/10 flex items-center justify-center text-[11px] font-bold text-gray-300">
+                          {tech.charAt(0).toUpperCase()}
+                        </div>
                       )}
                       <span className="text-[11px] font-medium text-gray-300 text-center leading-tight">
                         {tech}
@@ -222,32 +248,35 @@ const ProjectDetail = ({ project }) => {
         </div>
 
         {/* Screenshots */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-12 lg:mt-16"
-        >
-          <h2 className="text-base font-semibold text-white mb-4">
-            Screenshots
-          </h2>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-            {[0, 1, 2, 3].map((i) => (
-              <div
-                key={i}
-                className="rounded-xl border border-white/10 bg-[#0a0a0a]/60 p-2 hover:border-white/20 transition-colors"
-              >
+        {project.screenshots?.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-12 lg:mt-16"
+          >
+            <h2 className="text-base font-semibold text-white mb-4">
+              Screenshots
+            </h2>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+              {project.screenshots.map((src, i) => (
                 <div
-                  className={`relative h-24 sm:h-28 rounded-lg overflow-hidden bg-gradient-to-br ${project.accent}`}
+                  key={i}
+                  className="rounded-xl border border-white/10 bg-[#0a0a0a]/60 p-2 hover:border-white/20 transition-colors"
                 >
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.12),transparent_60%)]" />
-                  {renderProjectPreview(project)}
+                  <div className="relative h-24 sm:h-28 rounded-lg overflow-hidden">
+                    <img
+                      src={src}
+                      alt={`${project.title} screenshot ${i + 1}`}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
       </div>
     </section>
   );

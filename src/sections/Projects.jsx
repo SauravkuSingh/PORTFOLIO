@@ -1,10 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
-import { renderProjectPreview } from "@/components/ProjectMockups";
+import ProjectCard from "@/components/ProjectCard";
 import { PROJECTS } from "@/data/projects";
 
 const FILTERS = ["All", "Web Apps", "Full Stack", "Frontend"];
@@ -66,62 +64,13 @@ const Projects = () => {
         </motion.div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AnimatePresence mode="popLayout">
             {visible.map((project, i) => (
-              <motion.div
-                key={project.slug}
-                layout
-                initial={{ opacity: 0, y: 20, scale: 0.96 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.96 }}
-                transition={{
-                  duration: 0.45,
-                  delay: i * 0.05,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                whileHover={{ y: -4 }}
-                className="group relative flex flex-col rounded-2xl border border-white/10 bg-[#0a0a0a]/60 backdrop-blur-xl p-3 hover:border-white/20 hover:bg-[#0a0a0a]/80 transition-colors shadow-xl"
-              >
-                <Link
-                  href={`/projects/${project.slug}`}
-                  className="flex flex-col flex-1 text-left"
-                >
-                  <div
-                    className={`relative h-44 sm:h-48 rounded-xl overflow-hidden bg-gradient-to-br ${project.accent}`}
-                  >
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.12),transparent_60%)]" />
-                    {renderProjectPreview(project)}
-                    <div className="absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                      <ArrowUpRight className="w-3.5 h-3.5 text-white" />
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col gap-2 px-2 pt-4 pb-2">
-                    <h3 className="text-base sm:text-lg font-semibold text-white tracking-tight">
-                      {project.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-gray-400 leading-relaxed">
-                      {project.shortDescription}
-                    </p>
-                  </div>
-
-                  <div className="flex flex-wrap gap-1.5 px-2 pb-2 mt-auto">
-                    {project.stack.map((tech) => (
-                      <span
-                        key={tech}
-                        className="text-[10px] sm:text-[11px] font-medium text-gray-300 px-2.5 py-1 rounded-md bg-white/5 border border-white/10"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </Link>
-              </motion.div>
+              <ProjectCard key={project.slug} project={project} index={i} />
             ))}
           </AnimatePresence>
         </div>
-
       </div>
     </section>
   );
