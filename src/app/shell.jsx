@@ -2,7 +2,6 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "@/layout/Navbar";
 import Footer from "@/sections/Footer";
 import Background from "@/components/background/Background";
@@ -19,17 +18,7 @@ export default function Shell({ children }) {
       <Background />
       <div className="min-h-screen relative z-10 text-white">
         <Navbar />
-        <AnimatePresence mode="wait">
-          <motion.main
-            key={pathname}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          >
-            {children}
-          </motion.main>
-        </AnimatePresence>
+        <main key={pathname}>{children}</main>
         <Footer />
       </div>
     </>

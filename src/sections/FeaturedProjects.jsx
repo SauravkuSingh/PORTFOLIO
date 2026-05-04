@@ -6,8 +6,6 @@ import { ArrowUpRight, ArrowRight, Sparkles } from "lucide-react";
 import { renderProjectPreview } from "@/components/ProjectMockups";
 import { PROJECTS } from "@/data/projects";
 
-const MotionLink = motion.create(Link);
-
 const FeaturedProjects = () => {
   const featured = PROJECTS.slice(0, 3);
 
@@ -71,9 +69,8 @@ const FeaturedProjects = () => {
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {featured.map((project, i) => (
-            <MotionLink
+            <motion.div
               key={project.slug}
-              href={`/projects/${project.slug}`}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -83,12 +80,15 @@ const FeaturedProjects = () => {
                 ease: [0.16, 1, 0.3, 1],
               }}
               whileHover={{ y: -6 }}
-              className="group relative flex flex-col text-left rounded-2xl p-[1px] bg-gradient-to-br from-white/15 via-white/5 to-white/10 hover:from-violet-500/40 hover:via-fuchsia-500/30 hover:to-indigo-500/40 transition-colors shadow-2xl"
+              className="group relative rounded-2xl p-[1px] bg-gradient-to-br from-white/15 via-white/5 to-white/10 hover:from-violet-500/40 hover:via-fuchsia-500/30 hover:to-indigo-500/40 transition-colors shadow-2xl"
             >
               {/* Outer glow on hover */}
               <div className="absolute -inset-2 bg-gradient-to-r from-violet-500/20 via-fuchsia-500/20 to-indigo-500/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 -z-10" />
 
-              <div className="flex flex-col h-full rounded-2xl bg-[#0a0a0a]/85 backdrop-blur-xl p-3">
+              <Link
+                href={`/projects/${project.slug}`}
+                className="flex flex-col h-full text-left rounded-2xl bg-[#0a0a0a]/85 backdrop-blur-xl p-3"
+              >
                 {/* Preview */}
                 <div
                   className={`relative h-44 sm:h-48 rounded-xl overflow-hidden bg-gradient-to-br ${project.accent}`}
@@ -125,8 +125,8 @@ const FeaturedProjects = () => {
                     </span>
                   ))}
                 </div>
-              </div>
-            </MotionLink>
+              </Link>
+            </motion.div>
           ))}
         </div>
 
