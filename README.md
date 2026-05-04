@@ -192,4 +192,4 @@ npm run lint     # Lint
 
 - LinkedIn: [linkedin.com/in/saurav-singh-fsdev](https://www.linkedin.com/in/saurav-singh-fsdev/)
 - GitHub: [@SauravkuSingh](https://github.com/SauravkuSingh)
-- Email: developer.epm1@gmail.com
+- Email: sauravksinghdev@gmail.com
