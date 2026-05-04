@@ -61,6 +61,11 @@ const Tech = () => {
               <TechCard key={tech.name} {...tech} />
             ))}
           </Marquee>
+          <Marquee reverse pauseOnHover className="[--duration:40s]">
+            {techLogos.map((tech) => (
+              <TechCard key={`r-${tech.name}`} {...tech} />
+            ))}
+          </Marquee>
 
           {/* Edge fade overlays */}
           <div className="pointer-events-none absolute inset-y-0 left-0 w-24 sm:w-40 bg-linear-to-r from-black to-transparent" />

@@ -167,6 +167,7 @@ const Home = () => {
             </motion.div>
 
             <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[4rem] font-bold tracking-tighter text-white leading-[1.1]">
+              <span className="sr-only">Saurav Singh — </span>
               Building Scalable
               <br className="hidden lg:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-fuchsia-400 to-indigo-400 animate-gradient">
@@ -264,7 +265,7 @@ const Home = () => {
               <div className="relative w-full h-full rounded-[2rem] overflow-hidden bg-gradient-to-b from-gray-800 to-black isolate">
                 <img
                   src="/assets/profile.webp"
-                  alt="Profile"
+                  alt="Saurav Singh — Full Stack Developer based in Bhilai, India"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-white/10 mix-blend-overlay"></div>
