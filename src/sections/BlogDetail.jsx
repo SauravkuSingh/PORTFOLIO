@@ -2,10 +2,12 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowLeft, Twitter, Linkedin, Link as LinkIcon, Home, ChevronRight, ArrowRight } from "lucide-react";
+import { Home, ChevronRight } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { BLOGS } from "@/data/blogs";
+import LikeButton from "@/components/blog/LikeButton";
+import ShareMenu from "@/components/blog/ShareMenu";
 
 const BlogDetail = ({ blog }) => {
   // Find prev/next blogs for footer navigation
@@ -80,17 +82,14 @@ const BlogDetail = ({ blog }) => {
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
-            <span className="text-sm font-medium text-gray-400 mr-2">Share this post:</span>
-            <button className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-colors">
-              <Twitter className="w-4 h-4" />
-            </button>
-            <button className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-colors">
-              <Linkedin className="w-4 h-4" />
-            </button>
-            <button className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-colors">
-              <LinkIcon className="w-4 h-4" />
-            </button>
+          <div className="flex items-center gap-4 flex-wrap">
+            <LikeButton slug={blog.slug} />
+            <div className="flex items-center gap-3">
+              <span className="hidden sm:inline text-sm font-medium text-gray-400">
+                Share:
+              </span>
+              <ShareMenu title={blog.title} />
+            </div>
           </div>
         </motion.div>
 
