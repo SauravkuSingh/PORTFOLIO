@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Hourglass } from "lucide-react";
 import ProjectCard from "@/components/ProjectCard";
 import { PROJECTS } from "@/data/projects";
 
@@ -63,14 +64,42 @@ const Projects = () => {
           ))}
         </motion.div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <AnimatePresence mode="popLayout">
-            {visible.map((project, i) => (
-              <ProjectCard key={project.slug} project={project} index={i} />
-            ))}
-          </AnimatePresence>
-        </div>
+        {/* Grid or empty-state notice */}
+        {visible.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <AnimatePresence mode="popLayout">
+              {visible.map((project, i) => (
+                <ProjectCard key={project.slug} project={project} index={i} />
+              ))}
+            </AnimatePresence>
+          </div>
+        ) : (
+          <motion.div
+            key={`empty-${filter}`}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="flex justify-center"
+          >
+            <div className="relative max-w-md w-full rounded-2xl border border-white/10 bg-[#0a0a0a]/60 backdrop-blur-xl px-8 py-10 text-center shadow-xl overflow-hidden">
+              {/* Ambient glow */}
+              <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-48 h-48 bg-violet-500/20 rounded-full blur-3xl pointer-events-none" />
+
+              <div className="relative flex flex-col items-center">
+                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-violet-500/30 to-fuchsia-500/30 border border-white/10 flex items-center justify-center mb-5">
+                  <Hourglass className="w-6 h-6 text-violet-300" />
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-2 tracking-tight">
+                  {filter} projects uploading soon
+                </h3>
+                <p className="text-sm text-gray-400 leading-relaxed">
+                  I'm wrapping up work in this category — check back shortly,
+                  or explore the other tabs in the meantime.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        )}
       </div>
     </section>
   );
