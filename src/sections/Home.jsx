@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { motion, useInView, animate } from "framer-motion";
-import { TypingAnimation } from "@/components/ui/typing-animation";
-import { CoolMode } from "@/components/ui/cool-mode";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 import {
   Download,
@@ -208,19 +207,17 @@ const Home = () => {
             variants={itemVariants}
             className="flex flex-col sm:flex-row items-center gap-5 mt-4 w-full sm:w-auto"
           >
-            <CoolMode options={{ particle: "✨", size: 14 }}>
-              <div className="w-full sm:w-auto">
-                <ShimmerButton
-                  shimmerColor="#a855f7"
-                  className="h-14 px-8 w-full"
-                >
-                  <span className="flex items-center justify-center gap-2 text-base font-semibold text-white">
-                    Explore Projects
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </ShimmerButton>
-              </div>
-            </CoolMode>
+            <Link href="/projects" className="w-full sm:w-auto">
+              <ShimmerButton
+                shimmerColor="#a855f7"
+                className="group h-14 px-8 w-full"
+              >
+                <span className="flex items-center justify-center gap-2 text-base font-semibold text-white">
+                  Explore Projects
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </ShimmerButton>
+            </Link>
             <div>
               <button className="h-14 px-8 w-full sm:w-auto rounded-full border border-white/10 bg-white/5 hover:bg-white/10 backdrop-blur-md text-white font-medium transition-all duration-300 flex items-center justify-center gap-2">
                 <Download className="w-5 h-5" />
