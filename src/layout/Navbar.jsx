@@ -74,7 +74,7 @@ const Navbar = () => {
         }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        className="pointer-events-auto flex items-center h-14 sm:h-16 rounded-full backdrop-blur-md bg-white/5 border border-white/10 shadow-xl overflow-hidden relative cursor-pointer"
+        className="pointer-events-auto flex items-center h-14 sm:h-16 rounded-full backdrop-blur-xl bg-black/50 border border-white/10 shadow-xl overflow-hidden relative cursor-pointer"
         style={{
           padding: isCompact ? "0" : "0 1rem",
           justifyContent: isCompact ? "center" : "space-between",

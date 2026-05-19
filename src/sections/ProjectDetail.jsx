@@ -11,6 +11,7 @@ import {
   BarChart3,
   ImageDown,
   Bitcoin,
+  Cpu,
 } from "lucide-react";
 import {
   SiNextdotjs,
@@ -29,6 +30,7 @@ import {
   SiFramer,
   SiGithub,
   SiReactrouter,
+  SiCloudinary,
 } from "react-icons/si";
 import { Safari } from "@/components/ui/safari";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
@@ -69,6 +71,8 @@ const TECH = {
   html2canvas: { Icon: ImageDown, color: "text-amber-400" },
   "React Router": { Icon: SiReactrouter, color: "text-red-400" },
   "CoinGecko API": { Icon: Bitcoin, color: "text-yellow-400" },
+  Cloudinary: { Icon: SiCloudinary, color: "text-sky-400" },
+  "Groq AI": { Icon: Cpu, color: "text-orange-400" },
 };
 
 const ProjectDetail = ({ project }) => {

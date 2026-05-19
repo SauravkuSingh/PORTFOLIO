@@ -91,6 +91,53 @@ export const PROJECTS = [
       Date: "2026",
     },
   },
+  {
+    slug: "splitify",
+    title: "Splitify",
+    tagline: "AI-Powered Expense Splitting",
+    category: "Full Stack",
+    shortDescription:
+      "Split bills with friends and groups — track expenses, settle up, and get AI-powered insights.",
+    description:
+      "A full-stack expense-splitting app where groups track shared expenses, split bills, upload receipts to Cloudinary, and get AI-powered summaries via Groq.",
+    stack: ["React", "Express", "MongoDB", "Groq AI"],
+    fullStack: [
+      "React",
+      "Vite",
+      "Tailwind CSS",
+      "Express",
+      "MongoDB",
+      "JWT",
+      "Cloudinary",
+      "Groq AI",
+      "Recharts",
+    ],
+    url: "splitify-ebon.vercel.app",
+    liveUrl: "https://splitify.sauravksingh.in",
+    codeUrl: "https://github.com/SauravkuSingh/Splitify",
+    image: "/assets/projects/splitify.webp",
+    screenshots: [],
+    accent: "from-emerald-400/40 via-teal-500/30 to-cyan-600/40",
+    overview:
+      "Splitify is a full-stack expense-splitting app for groups — friends, roommates, trips. Members create groups, log shared expenses with custom splits, upload receipts, and instantly see who owes whom. A Groq-powered AI layer summarises spending patterns and surfaces insights, while Recharts visualises the data. Auth is JWT-based with bcrypt-hashed passwords, receipts are stored via Cloudinary, and the whole stack runs on a React + Express + MongoDB foundation.",
+    features: [
+      "Group creation & member management",
+      "Add expenses with equal, custom, or share-based splits",
+      "Receipt uploads via Cloudinary",
+      "AI-powered spending insights & summaries (Groq)",
+      "Settle-up — who owes whom, at a glance",
+      "Spending analytics with charts (Recharts)",
+      "Secure JWT auth with bcrypt-hashed passwords",
+      "Responsive, modern UI",
+    ],
+    info: {
+      Category: "Fintech / Productivity",
+      Duration: "4 weeks",
+      Client: "Personal Project",
+      Role: "Full Stack Developer",
+      Date: "2026",
+    },
+  },
 ];
 
 export const getProjectBySlug = (slug) =>

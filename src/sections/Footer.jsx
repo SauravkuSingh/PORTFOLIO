@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
-import { Github, Linkedin, Twitter, Mail, Heart } from "lucide-react";
+import { Github, Linkedin, Mail, Heart, Sparkles } from "lucide-react";
 import ContactDialog from "./ContactDialog";
 
 const Footer = () => {
@@ -14,10 +14,22 @@ const Footer = () => {
 
       <div className="max-w-5xl mx-auto flex flex-col items-center gap-10 relative z-10">
         <div className="text-center space-y-5">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10"
+          >
+            <Sparkles className="w-3 h-3 text-violet-400" />
+            <span className="text-[10px] font-semibold text-gray-300 tracking-[0.2em] uppercase">
+              Let's talk
+            </span>
+          </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
+            transition={{ delay: 0.05 }}
             className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter text-white"
           >
             Let's work{" "}
@@ -30,10 +42,10 @@ const Footer = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ delay: 0.1 }}
-            className="text-gray-400 max-w-md mx-auto text-lg font-light leading-relaxed"
+            className="text-gray-400 max-w-xl mx-auto text-base sm:text-lg font-light leading-relaxed"
           >
-            I'm currently available for new opportunities. If you have a project
-            that needs some creative magic, I'd love to hear from you.
+            I'm open to freelance work, full-time roles, and interesting
+            collaborations. Send a message and let's chat.
           </motion.p>
         </div>
 
