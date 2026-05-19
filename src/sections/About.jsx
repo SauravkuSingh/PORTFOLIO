@@ -61,6 +61,8 @@ const About = () => {
               <img
                 src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop"
                 alt="Dashboard UI"
+                loading="lazy"
+                decoding="async"
                 className="rounded-xl object-cover h-40 md:h-56 w-full shadow-xl transition-transform duration-500 group-hover:scale-105"
               />
             </div>
@@ -69,6 +71,8 @@ const About = () => {
               <img
                 src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop"
                 alt="Code on screen"
+                loading="lazy"
+                decoding="async"
                 className="rounded-xl object-cover h-40 md:h-56 w-full shadow-xl transition-transform duration-500 group-hover:scale-105"
               />
             </div>
@@ -139,6 +143,8 @@ const About = () => {
               <img
                 src="/assets/college.webp"
                 alt="University"
+                loading="lazy"
+                decoding="async"
                 className="rounded-xl object-cover h-40 md:h-56 w-full shadow-xl transition-transform duration-500 group-hover:scale-105"
               />
             </div>
@@ -146,6 +152,8 @@ const About = () => {
               <img
                 src="/assets/campus.webp"
                 alt="University"
+                loading="lazy"
+                decoding="async"
                 className="rounded-xl object-cover h-40 md:h-56 w-full shadow-xl transition-transform duration-500 group-hover:scale-105"
               />
             </div>

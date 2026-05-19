@@ -36,6 +36,8 @@ const ProjectCard = ({ project, index = 0 }) => {
             <img
               src={project.image}
               alt={project.title}
+              loading="lazy"
+              decoding="async"
               className="absolute inset-0 w-full h-full object-cover"
             />
           )}

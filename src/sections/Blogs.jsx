@@ -88,7 +88,7 @@ const Blogs = () => {
                   <div className={`relative w-full md:w-72 lg:w-80 h-48 sm:h-56 md:h-60 lg:h-64 shrink-0 rounded-xl overflow-hidden bg-gradient-to-br ${blog.accent}`}>
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.15),transparent_70%)]" />
                     {blog.image ? (
-                      <img src={blog.image} alt={blog.title} className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" />
+                      <img src={blog.image} alt={blog.title} loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out" />
                     ) : (
                       <div className="absolute inset-0 flex items-center justify-center opacity-30">
                         <PenTool className="w-16 h-16 text-white" />
