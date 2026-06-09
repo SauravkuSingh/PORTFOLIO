@@ -3,8 +3,13 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { SiGithub } from "react-icons/si";
 
 const ProjectCard = ({ project, index = 0 }) => {
+  // Cards pulled from GitHub get a small source badge; everything links to the
+  // internal detail page either way.
+  const isGithub = project.source === "github";
+
   return (
     <motion.div
       layout
@@ -49,7 +54,8 @@ const ProjectCard = ({ project, index = 0 }) => {
 
           {/* Category tag */}
           {project.category && (
-            <div className="absolute top-3 left-3 px-2.5 py-1 rounded-md bg-black/50 backdrop-blur-md border border-white/15 text-[10px] font-medium text-white/90 tracking-wide uppercase">
+            <div className="absolute top-3 left-3 flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-black/50 backdrop-blur-md border border-white/15 text-[10px] font-medium text-white/90 tracking-wide uppercase">
+              {isGithub && <SiGithub className="w-3 h-3" />}
               {project.category}
             </div>
           )}

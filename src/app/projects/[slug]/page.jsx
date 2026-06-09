@@ -1,14 +1,21 @@
-"use client";
-
-import { useParams } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { getProjectBySlug } from "@/data/projects";
+import { PROJECTS, getProjectBySlug } from "@/data/projects";
+import { getGithubProjects, getGithubProjectBySlug } from "@/lib/github";
 import ProjectDetail from "@/sections/ProjectDetail";
 
-export default function ProjectSlugPage() {
-  const { slug } = useParams();
-  const project = getProjectBySlug(slug);
+// Keep auto-pulled repos fresh (ISR) without a redeploy.
+export const revalidate = 3600;
+
+// Pre-render a detail page for every curated and auto-pulled project.
+export async function generateStaticParams() {
+  const github = await getGithubProjects();
+  return [...PROJECTS, ...github].map((p) => ({ slug: p.slug }));
+}
+
+export default async function ProjectSlugPage({ params }) {
+  const { slug } = await params;
+  const project = getProjectBySlug(slug) || (await getGithubProjectBySlug(slug));
 
   if (!project) {
     return (

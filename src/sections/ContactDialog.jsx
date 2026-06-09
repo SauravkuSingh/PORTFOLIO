@@ -11,9 +11,10 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { Send, CheckCircle2, AlertCircle, Loader2, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
+import { PHONES, telHref } from "@/data/contact";
 
 const EMPTY = { name: "", email: "", phone: "", message: "", _honey: "" };
 
@@ -242,6 +243,25 @@ const ContactDialog = ({ open, onOpenChange }) => {
             </motion.form>
           )}
         </AnimatePresence>
+
+        {/* Direct line — call me without the form */}
+        <div className="mt-6 pt-5 border-t border-white/10 px-2">
+          <p className="text-[11px] text-gray-500 text-center mb-3 tracking-[0.15em] uppercase">
+            Or call me directly
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-2.5">
+            {PHONES.map((phone) => (
+              <a
+                key={phone}
+                href={telHref(phone)}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 text-sm font-medium text-gray-200 transition-colors"
+              >
+                <Phone className="w-4 h-4 text-violet-400" />
+                {phone}
+              </a>
+            ))}
+          </div>
+        </div>
       </DialogContent>
     </Dialog>
   );

@@ -8,13 +8,16 @@ import { PROJECTS } from "@/data/projects";
 
 const FILTERS = ["All", "Web Apps", "Full Stack", "Frontend"];
 
-const Projects = () => {
+const Projects = ({ githubProjects = [] }) => {
   const [filter, setFilter] = useState("All");
+
+  // Curated projects first, then repos auto-pulled from GitHub.
+  const allProjects = [...PROJECTS, ...githubProjects];
 
   const visible =
     filter === "All"
-      ? PROJECTS
-      : PROJECTS.filter((p) => p.category === filter);
+      ? allProjects
+      : allProjects.filter((p) => p.category === filter);
 
   return (
     <section className="relative z-2 px-6 sm:px-10 pt-32 pb-20 lg:pt-40 lg:pb-28">
