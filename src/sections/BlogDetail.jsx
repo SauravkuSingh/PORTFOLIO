@@ -98,10 +98,10 @@ const BlogDetail = ({ blog }) => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="w-full aspect-[2/1] sm:aspect-[21/9] rounded-2xl overflow-hidden mb-12 relative border border-white/10 bg-[#0a0a0a]"
+          className={`w-full ${blog.imageFit === "contain" ? "aspect-[3/2]" : "aspect-[2/1] sm:aspect-[21/9]"} rounded-2xl overflow-hidden mb-12 relative border border-white/10 bg-[#0a0a0a]`}
         >
           {blog.image ? (
-            <img src={blog.image} alt={blog.title} className="w-full h-full object-cover" />
+            <img src={blog.image} alt={blog.title} className={`w-full h-full ${blog.imageFit === "contain" ? "object-contain" : "object-cover"}`} />
           ) : (
             <div className={`w-full h-full bg-gradient-to-br ${blog.accent} opacity-20`} />
           )}
