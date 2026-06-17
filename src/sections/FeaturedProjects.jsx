@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import ProjectCard from "@/components/ProjectCard";
+import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { PROJECTS } from "@/data/projects";
 
 const FeaturedProjects = () => {
@@ -81,15 +82,13 @@ const FeaturedProjects = () => {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="flex justify-center mt-14 lg:mt-16"
         >
-          <Link
-            href="/projects"
-            className="group relative inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-violet-600 via-fuchsia-600 to-indigo-600 text-white text-sm font-semibold shadow-2xl shadow-violet-500/30 hover:shadow-violet-500/50 transition-shadow"
-          >
-            <span className="absolute inset-0 rounded-full bg-gradient-to-r from-violet-500 via-fuchsia-500 to-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity blur-md" />
-            <span className="relative flex items-center gap-2">
-              View all projects
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </span>
+          <Link href="/projects">
+            <ShimmerButton shimmerColor="#a855f7" className="group h-14 px-8">
+              <span className="flex items-center justify-center gap-2 text-base font-semibold text-white">
+                View all projects
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </span>
+            </ShimmerButton>
           </Link>
         </motion.div>
       </div>

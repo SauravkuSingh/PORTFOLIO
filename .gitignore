@@ -39,3 +39,7 @@ next-env.d.ts
 
 # Vercel
 .vercel
+
+# Claude Code (local AI assistant config — never push)
+.claude/
+settings.json

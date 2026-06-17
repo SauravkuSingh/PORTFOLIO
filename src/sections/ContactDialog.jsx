@@ -71,7 +71,10 @@ const ContactDialog = ({ open, onOpenChange }) => {
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="sm:max-w-[500px] w-[95vw] max-w-[95vw] max-h-[90vh] overflow-y-auto p-4 sm:p-6 bg-[#0a0a0a]/80 backdrop-blur-3xl border border-white/10 shadow-2xl text-white rounded-3xl">
+      <DialogContent
+        data-lenis-prevent
+        className="sm:max-w-[500px] w-[95vw] max-w-[95vw] max-h-[90vh] overflow-y-auto p-4 sm:p-6 bg-[#0a0a0a]/80 backdrop-blur-3xl border border-white/10 shadow-2xl text-white rounded-3xl"
+      >
         <DialogHeader>
           <DialogTitle className="text-2xl sm:text-3xl font-bold text-center tracking-tight mt-2">
             Let's{" "}

@@ -6,6 +6,7 @@ import Lenis from "lenis";
 import Navbar from "@/layout/Navbar";
 import Footer from "@/sections/Footer";
 import Background from "@/components/background/Background";
+import ChatWidget from "@/components/bot/ChatWidget";
 
 export default function Shell({ children }) {
   const pathname = usePathname();
@@ -54,6 +55,7 @@ export default function Shell({ children }) {
         <main key={pathname}>{children}</main>
         <Footer />
       </div>
+      <ChatWidget />
     </>
   );
 }
