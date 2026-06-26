@@ -1,4 +1,4 @@
-# Saurav Singh — Portfolio
+# Saurav Singh — Portfolio.
 
 Personal portfolio of Saurav Singh, a full-stack developer based in Bhilai, India.
 
