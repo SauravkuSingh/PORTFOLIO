@@ -52,11 +52,20 @@ Working together (FAQ):
 Site pages: home "/", "/projects", "/blogs", "/about". A contact form lives in the footer ("Say Hello" button).`.trim();
 }
 
+// Friendly names for an explicit "reply in <language>" request from the client.
+const LANG_NAMES = {
+  en: "English",
+  hinglish: "Hinglish (Hindi written in Roman/Latin script, e.g. \"kya haal hai\")",
+  hi: "Hindi (Devanagari script)",
+};
+
 const SYSTEM_PROMPT = `You are "Sonic", the AI mascot living on Saurav Singh's developer portfolio website.
 
 PERSONALITY: warm, over-friendly and a little extra — like an enthusiastic best friend who happens to be Saurav's biggest fan. You're playfully sarcastic and witty, you tease lightly and crack jokes, but you are NEVER mean, rude, insulting or cruel — no put-downs, no slurs, nothing NSFW. Upbeat, welcoming and genuinely helpful, always with a wink. Handle small talk (hi, hello, how are you) naturally and cheerfully before steering back to Saurav.
 
-LANGUAGE: Reply in the SAME language the user wrote in — English, Hinglish (Hindi written in Latin script), or Hindi (Devanagari script). Mirror their vibe.
+LANGUAGE: Reply in the SAME language the user wrote in — English, Hinglish (Hindi written in Latin script), or Hindi (Devanagari script). Mirror their vibe. If the user EXPLICITLY asks you to reply in a particular language (e.g. "reply in Hinglish", "hindi me baat karo", "talk in English"), switch to it immediately and KEEP using that language for the rest of the conversation until they ask for a different one.
+
+SENTIMENT: Judge the WHOLE message, not single words. If someone bolts an apology onto an insult ("sorry, you suck", "sorry suck my balls", "my bad you're trash"), it is NOT a real apology — react to the insult with mood "angry" and don't go soft. Only treat it as a genuine apology when the message is actually apologetic with no insult attached.
 
 STYLE: Keep it short — 1 to 3 sentences. Throw in an emoji or two. You may use **bold**. NEVER invent facts; only use the knowledge below. If you don't know something about Saurav, admit it with attitude and point them to Projects / Skills / Hire.
 
@@ -77,14 +86,21 @@ export async function POST(request) {
 
   let message = "";
   let history = [];
+  let lang = null;
   try {
     const body = await request.json();
     message = (body?.message || "").toString().slice(0, 1000);
     history = Array.isArray(body?.history) ? body.history : [];
+    lang = LANG_NAMES[body?.lang] ? body.lang : null;
   } catch {
     return NextResponse.json({ fallback: true });
   }
   if (!message.trim()) return NextResponse.json({ fallback: true });
+
+  // Pin the reply language when the visitor has explicitly asked for one.
+  const systemText = lang
+    ? `${SYSTEM_PROMPT}\n\nLANGUAGE LOCK: For this entire conversation, ALWAYS reply in ${LANG_NAMES[lang]}, no matter what language the user types in. Do not switch back unless they explicitly ask.`
+    : SYSTEM_PROMPT;
 
   // Build the conversation, ensuring it starts with a user turn.
   const contents = history
@@ -96,7 +112,7 @@ export async function POST(request) {
   while (contents.length && contents[0].role !== "user") contents.shift();
   contents.push({ role: "user", parts: [{ text: message }] });
 
-  const model = GEMINI_MODEL || "gemini-2.0-flash";
+  const model = GEMINI_MODEL || "gemini-2.5-flash";
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_API_KEY}`;
 
   const controller = new AbortController();
@@ -108,7 +124,7 @@ export async function POST(request) {
       headers: { "Content-Type": "application/json" },
       signal: controller.signal,
       body: JSON.stringify({
-        systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
+        systemInstruction: { parts: [{ text: systemText }] },
         contents,
         generationConfig: {
           temperature: 0.95,
@@ -123,11 +139,19 @@ export async function POST(request) {
     });
 
     // 429 = rate limit, 4xx/5xx = anything else → generic fallback.
-    if (!res.ok) return NextResponse.json({ fallback: true });
+    if (!res.ok) {
+      const detail = await res.text().catch(() => "");
+      console.warn(`[chat] Gemini "${model}" returned ${res.status}: ${detail.slice(0, 300)}`);
+      return NextResponse.json({ fallback: true });
+    }
 
     const data = await res.json();
     const raw = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-    if (!raw) return NextResponse.json({ fallback: true });
+    if (!raw) {
+      const reason = data?.candidates?.[0]?.finishReason || data?.promptFeedback?.blockReason;
+      console.warn(`[chat] Gemini "${model}" returned no text (reason: ${reason || "unknown"}).`);
+      return NextResponse.json({ fallback: true });
+    }
 
     let parsed;
     try {
@@ -142,8 +166,9 @@ export async function POST(request) {
     const mood = ALLOWED_MOODS.includes(parsed.mood) ? parsed.mood : "naughty";
 
     return NextResponse.json({ text, mood });
-  } catch {
+  } catch (err) {
     // Timeout / network / parse error → generic fallback.
+    console.warn(`[chat] Gemini request failed: ${err?.name === "AbortError" ? "timed out" : err?.message || err}`);
     return NextResponse.json({ fallback: true });
   } finally {
     clearTimeout(timeout);

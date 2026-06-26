@@ -131,6 +131,26 @@ function detectLang(raw) {
   return "en";
 }
 
+// Abuse / NSFW detection — used so an apology word smuggled into an insult
+// ("sorry suck my balls") is NOT mistaken for a genuine apology.
+export const ABUSE_RE =
+  /\b(f+u+c+k+\w*|fuk|fck|wtf|stfu|suck|sucks|sucking|balls?|dick|cock|bitch|asshole|ass|arse|bastard|shit|crap|moron|retard|jerk|stupid|dumb|idiot|useless|trash|garbage|loser|noob|ugly|hate|bsdk|bhosdi\w*|bhosda|madarchod|madar|mc|bc|behenchod|chutiy\w*|gandu|gaand|gand|lund|lawd\w*|lavd\w*|randi|kutt\w*|kamin\w*|haram\w*|saal\w+|bakwas|bekar|bekaar|faltu|gaali)\b/i;
+
+// Explicit "reply in <language>" requests, so we can switch and stay switched.
+export function detectLangRequest(raw) {
+  const s = (raw || "").toLowerCase();
+  // Must read like an instruction, not just a passing mention of a language.
+  const instructional =
+    /\b(reply|replies|respond|response|answer|talk|speak|write|say|bol|bolo|boliye|bola|likh|likho|kar|karo|switch|use|change|continue|only|in|me|mein|may|english me|hindi me)\b/.test(
+      s,
+    );
+  if (!instructional) return null;
+  if (/\bhinglish\b/.test(s)) return "hinglish";
+  if (/(\bhindi\b|devanagari|हिंदी|हिन्दी)/.test(s)) return "hi";
+  if (/(\benglish\b|angre[zj]i|इंग्लिश|अंग्रे)/.test(s)) return "en";
+  return null;
+}
+
 const findProject = (q) =>
   PROJECTS.find((p) => {
     const title = p.title.toLowerCase();
@@ -159,11 +179,23 @@ const projectMsg = (p, t) => ({
  *   { text, mood, links?, chips? }
  * mood ∈ idle | naughty | happy | angry | confused | thinking | talking
  */
-export function getBotReply(raw) {
+export function getBotReply(raw, forceLang) {
   const q = (raw || "").toLowerCase().trim();
-  const lang = detectLang(raw);
+  // A pinned language (from "reply in hinglish") wins over auto-detection.
+  const lang = ["en", "hinglish", "hi"].includes(forceLang) ? forceLang : detectLang(raw);
   // pick text by language: t(english, hinglish, hindi)
   const t = (en, hin, hi) => (lang === "hi" ? hi : lang === "hinglish" ? hin : en);
+
+  // — Explicit "reply in <language>" → acknowledge in that very language ——
+  const reqLang = detectLangRequest(raw);
+  if (reqLang && !ABUSE_RE.test(raw || "")) {
+    const ack = {
+      en: "You got it — switching to English. 🙂 So, what do you wanna know about Saurav?",
+      hinglish: "Theek hai — ab Hinglish mein baat karta hoon. 🙂 Bol, Saurav ke baare mein kya jaanna hai?",
+      hi: "ठीक है — अब हिंदी में बात करता हूँ। 🙂 बोल, सौरव के बारे में क्या जानना है?",
+    };
+    return { text: ack[reqLang], mood: "happy", chips: QUICK_CHIPS };
+  }
 
   // Whole-word + phrase matchers. (Substring matching caused false hits — e.g.
   // "hi" inside "hire", or "work" inside both "open to work" and the experience.)
@@ -183,11 +215,9 @@ export function getBotReply(raw) {
     };
   }
 
-  // — Insults → angry ——————————————————————————————————————————————————
-  if (
-    word("stupid", "dumb", "idiot", "useless", "trash", "noob", "bakwas", "bekar", "bekaar", "gandu", "chutiya", "sucks", "ugly", "loser", "faltu") ||
-    phrase("shut up", "hate you", "i hate", "you suck")
-  ) {
+  // — Insults / abuse → angry (checked BEFORE apology so "sorry you suck"
+  //   reads as the insult it is, not a genuine apology) ————————————————————
+  if (ABUSE_RE.test(raw || "") || phrase("shut up", "hate you", "i hate", "you suck")) {
     return {
       text: t(
         "Ugh, rude! 😤 Attacking a friendly little chatbot? I'm telling Saurav. ...okay I'm not, I'm too nice. Wanna see his projects instead?",
@@ -199,8 +229,11 @@ export function getBotReply(raw) {
     };
   }
 
-  // — Apology ——————————————————————————————————————————————————————————
-  if (word("sorry", "apologize", "apologies", "apology", "maaf", "galti") || phrase("my bad")) {
+  // — Apology (only when it's a real one — no insult riding along) ————————
+  if (
+    !ABUSE_RE.test(raw || "") &&
+    (word("sorry", "apologize", "apologies", "apology", "maaf", "galti") || phrase("my bad"))
+  ) {
     return {
       text: t(
         "...Yeah, you should be. 😤 Now ask something useful before I lose interest.",

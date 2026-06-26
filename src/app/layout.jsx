@@ -124,7 +124,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <link rel="icon" type="image/png" href="/favicon.png" />
+        {/* Favicons are auto-injected by Next from src/app/icon.png,
+            apple-icon.png and favicon.ico (file-based metadata convention). */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
