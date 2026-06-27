@@ -112,7 +112,11 @@ export async function POST(request) {
   while (contents.length && contents[0].role !== "user") contents.shift();
   contents.push({ role: "user", parts: [{ text: message }] });
 
+<<<<<<< Updated upstream
   const model = GEMINI_MODEL || "gemini-2.5-flash";
+=======
+  const model = GEMINI_MODEL || "gemini-2.5-flash-lite";
+>>>>>>> Stashed changes
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_API_KEY}`;
 
   const controller = new AbortController();
