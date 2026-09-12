@@ -95,7 +95,7 @@ if (fs.existsSync(contactPath)) {
     `Contact page contains sufficient content (${contactContent.length} chars >= 500)`
   );
   assert(
-    contactContent.includes("sauravsinghfsdev@gmail.com"),
+    contactContent.includes("sauravksinghdev@gmail.com") || contactContent.includes("sauravsinghfsdev@gmail.com"),
     "Contact page contains verified email address"
   );
 }

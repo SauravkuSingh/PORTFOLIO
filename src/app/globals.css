@@ -3,12 +3,12 @@
 @import "tw-animate-css";
 html, body, #root {
   background-color: black;
-  height: 100%;
+  min-height: 100%;
   overscroll-behavior: none;
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 @custom-variant dark (&:is(.dark *));

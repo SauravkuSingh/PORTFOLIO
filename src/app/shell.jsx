@@ -24,6 +24,14 @@ export default function Shell({ children }) {
     });
     lenisRef.current = lenis;
 
+    // Observe DOM height changes to automatically resize Lenis
+    const resizeObserver = new ResizeObserver(() => {
+      lenis.resize();
+    });
+    if (document.body) {
+      resizeObserver.observe(document.body);
+    }
+
     let rafId;
     const raf = (time) => {
       lenis.raf(time);
@@ -32,16 +40,27 @@ export default function Shell({ children }) {
     rafId = requestAnimationFrame(raf);
 
     return () => {
+      resizeObserver.disconnect();
       cancelAnimationFrame(rafId);
       lenis.destroy();
       lenisRef.current = null;
     };
   }, []);
 
-  // Reset scroll on route change (use Lenis if available, else fallback)
+  // Reset scroll on route change and recalculate page dimensions
   useEffect(() => {
     if (lenisRef.current) {
       lenisRef.current.scrollTo(0, { immediate: true });
+      requestAnimationFrame(() => {
+        lenisRef.current?.resize();
+      });
+      // Additional fallback timers for lazy/dynamically imported components
+      const t1 = setTimeout(() => lenisRef.current?.resize(), 100);
+      const t2 = setTimeout(() => lenisRef.current?.resize(), 400);
+      return () => {
+        clearTimeout(t1);
+        clearTimeout(t2);
+      };
     } else if (typeof window !== "undefined") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
