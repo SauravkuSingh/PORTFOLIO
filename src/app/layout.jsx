@@ -79,13 +79,33 @@ const personJsonLd = {
   "@type": "Person",
   "@id": `${SITE_URL}/#saurav-singh`,
   name: "Saurav Singh",
+  alternateName: [
+    "Saurav K Singh",
+    "SauravkuSingh",
+    "Saurav Singh Developer",
+    "Saurav Singh Bhilai",
+    "Saurav Singh Full Stack Developer",
+    "Saurav Kumar Singh",
+    "Saurav Singh Portfolio",
+    
+  ],
   givenName: "Saurav",
   familyName: "Singh",
   url: SITE_URL,
+  email: "sauravksinghdev@gmail.com",
   image: `${SITE_URL}/og-image.png`,
   jobTitle: "Full Stack Developer",
   description:
-    "Full stack developer specializing in React, Next.js, and Node.js. Building fast, scalable web applications.",
+    "Saurav Singh is a Full Stack Developer specializing in React, Next.js, Node.js, and TypeScript. Based in Bhilai, India.",
+  worksFor: {
+    "@type": "Organization",
+    name: "Empmonitor",
+  },
+  alumniOf: {
+    "@type": "EducationalOrganization",
+    name: "Shri Shankaracharya Technical Campus",
+    alternateName: "SSTC Bhilai",
+  },
   address: {
     "@type": "PostalAddress",
     addressLocality: "Bhilai",
@@ -107,6 +127,11 @@ const personJsonLd = {
     "https://www.linkedin.com/in/saurav-singh-fsdev/",
     "https://github.com/SauravkuSingh",
   ],
+  brand: {
+    "@type": "Brand",
+    name: "Saurav Singh",
+    url: SITE_URL,
+  },
 };
 
 const websiteJsonLd = {
@@ -115,9 +140,19 @@ const websiteJsonLd = {
   "@id": `${SITE_URL}/#website`,
   url: SITE_URL,
   name: "Saurav Singh",
-  description: "Portfolio of Saurav Singh — Full Stack Developer.",
+  alternateName: ["sauravksingh.in", "Saurav Singh Portfolio"],
+  description: "Official Portfolio & Engineering Site of Saurav Singh — Full Stack Developer.",
   inLanguage: "en-IN",
   publisher: { "@id": `${SITE_URL}/#saurav-singh` },
+};
+
+const profilePageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "@id": `${SITE_URL}/#profilepage`,
+  url: SITE_URL,
+  name: "Saurav Singh — Official Portfolio",
+  mainEntity: { "@id": `${SITE_URL}/#saurav-singh` },
 };
 
 export default function RootLayout({ children }) {
@@ -128,6 +163,10 @@ export default function RootLayout({ children }) {
             apple-icon.png and favicon.ico (file-based metadata convention). */}
         <link rel="agent-instructions" href="/llms.txt" />
         <link rel="alternate" type="text/markdown" title="Agent Instructions" href="/llms.txt" />
+        <meta name="author" content="Saurav Singh" />
+        <meta name="publisher" content="Saurav Singh" />
+        <meta name="copyright" content="Saurav Singh" />
+        <meta name="identifier-URL" content={SITE_URL} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
@@ -135,6 +174,10 @@ export default function RootLayout({ children }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageJsonLd) }}
         />
       </head>
       <body suppressHydrationWarning>

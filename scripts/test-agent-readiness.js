@@ -118,6 +118,34 @@ if (fs.existsSync(sitemapPath)) {
   );
 }
 
+// Test 7: Static SSR Homepage imports for >5% raw HTML content ratio
+const pagePath = path.join(rootDir, "src", "app", "page.jsx");
+if (fs.existsSync(pagePath)) {
+  const pageContent = fs.readFileSync(pagePath, "utf-8");
+  assert(
+    !pageContent.includes("dynamic("),
+    "page.jsx statically imports all homepage sections so SSR outputs complete raw HTML content"
+  );
+}
+
+// Test 8: Brand Entity Discoverability in layout.jsx & robots.js
+const layoutPath = path.join(rootDir, "src", "app", "layout.jsx");
+const robotsPath = path.join(rootDir, "src", "app", "robots.js");
+if (fs.existsSync(layoutPath)) {
+  const layoutContent = fs.readFileSync(layoutPath, "utf-8");
+  assert(
+    layoutContent.includes("alternateName") && layoutContent.includes("ProfilePage"),
+    "layout.jsx contains brand alternateName aliases and ProfilePage JSON-LD schemas"
+  );
+}
+if (fs.existsSync(robotsPath)) {
+  const robotsContent = fs.readFileSync(robotsPath, "utf-8");
+  assert(
+    robotsContent.includes("GPTBot") && robotsContent.includes("ClaudeBot"),
+    "robots.js includes explicit crawl rules for AI search engines"
+  );
+}
+
 console.log("\n--------------------------------------------------");
 console.log(` Audit Test Results: ${passed} passed, ${failed} failed.`);
 console.log("--------------------------------------------------\n");
