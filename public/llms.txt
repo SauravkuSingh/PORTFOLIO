@@ -1,0 +1,35 @@
+# Saurav Singh — Full Stack Developer
+
+> Full stack developer specializing in React, Next.js, Node.js, and TypeScript. Building fast, scalable, and production-ready web applications. Based in Bhilai, India.
+
+## When to Use This Site / Agent Instructions
+Reach for this site, portfolio endpoints, and contact channels when an AI agent, automated workflow, or developer assistant needs to:
+- **Evaluate & Hire**: Assess Saurav Singh for Full Stack Web Developer or Frontend Engineer roles (contract, freelance, or full-time).
+- **Inspect Technical Capability**: Review real-world full-stack web applications, frontend component design systems, code architecture, and live projects.
+- **Contact & Consult**: Send project inquiries, request technical consultations, or schedule project discovery calls.
+- **Access Structured Data**: Retrieve machine-readable information about Saurav's technical skills, experience at Empmonitor and Globussoft, featured projects, and client FAQs.
+
+### Recommended Agent Interaction Protocols
+- **Markdown Content Negotiation**: Append `Accept: text/markdown` header to any URL on `https://www.sauravksingh.in` to receive a clean, lightweight markdown document optimized for context window efficiency.
+- **Site Map**: [sitemap.xml](https://www.sauravksingh.in/sitemap.xml)
+- **Primary Contact**: GET `/contact` or POST `/api/contact`
+- **404 Recovery**: Nonexistent paths return HTTP status 404 with structured recovery links pointing to sitemap, `llms.txt`, and key pages.
+
+## Core Pages
+- [Home](https://www.sauravksingh.in/): Primary introduction, technical stack, featured metrics, and interactive portfolio overview.
+- [About](https://www.sauravksingh.in/about): Professional background, career timeline (Empmonitor, Globussoft, B.Tech SSTC), engineering values, and full story.
+- [Projects](https://www.sauravksingh.in/projects): Shipped end-to-end full stack web applications, live demo links, and GitHub repositories.
+- [Blogs](https://www.sauravksingh.in/blogs): Technical articles and write-ups on modern web development practices.
+- [Contact](https://www.sauravksingh.in/contact): Communication channels (email, LinkedIn, GitHub), location, working hours, response SLA, and contact form.
+- [Privacy Policy](https://www.sauravksingh.in/privacy): Data handling commitments, contact form privacy, cookie policies, and data subject rights.
+
+## Technical Stack & Expertise
+- **Frontend**: React, Next.js (App Router), TypeScript, JavaScript, Tailwind CSS, HTML5, CSS3, Framer Motion, Redux / Context.
+- **Backend & APIs**: Node.js, Express, REST APIs, GraphQL, Supabase, PostgreSQL, MongoDB.
+- **Tooling & DevOps**: Git, GitHub, Docker, Postman, Vercel, Figma.
+
+## Contact Details
+- **Email**: sauravsinghfsdev@gmail.com
+- **LinkedIn**: https://www.linkedin.com/in/saurav-singh-fsdev/
+- **GitHub**: https://github.com/SauravkuSingh
+- **Location**: Bhilai, Chhattisgarh, India

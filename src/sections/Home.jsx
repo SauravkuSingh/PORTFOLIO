@@ -423,9 +423,9 @@ const Home = () => {
                     <stat.icon className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
                   </div>
                   <div className="flex flex-col items-start">
-                    <h3 className="text-2xl lg:text-3xl font-bold text-white tracking-tight leading-none">
+                    <span className="text-2xl lg:text-3xl font-bold text-white tracking-tight leading-none block">
                       <StatCounter target={stat.value} suffix={stat.suffix} />
-                    </h3>
+                    </span>
                     <p className="text-[10px] lg:text-xs font-semibold text-gray-400 tracking-wider uppercase mt-1.5 group-hover/stat:text-gray-300 transition-colors">
                       {stat.label}
                     </p>

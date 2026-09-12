@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "node scripts/test-agent-readiness.js"
   },
   "dependencies": {
     "@supabase/ssr": "^0.10.2",

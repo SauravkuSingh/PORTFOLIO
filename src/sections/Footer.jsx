@@ -67,19 +67,27 @@ const Footer = () => {
           </ShimmerButton>
         </motion.div>
 
-        {/* Bottom Socials & Copyright */}
+        {/* Bottom Navigation, Socials & Copyright */}
         <div className="flex flex-col md:flex-row items-center justify-between w-full pt-8 border-t border-white/5 mt-8 gap-6">
-          <p className="text-gray-400 text-sm flex items-center gap-2 font-medium">
-            Made with <Heart className="w-4 h-4 text-red-500 fill-current" /> by
-            Saurav Singh
-          </p>
+          <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+            <p className="text-gray-400 text-sm flex items-center gap-2 font-medium">
+              Made with <Heart className="w-4 h-4 text-red-500 fill-current" /> by
+              Saurav Singh
+            </p>
+            <div className="flex items-center gap-3 text-xs text-gray-400 font-medium">
+              <a href="/contact" className="hover:text-white transition-colors">Contact</a>
+              <span>·</span>
+              <a href="/privacy" className="hover:text-white transition-colors">Privacy Policy</a>
+              <span className="hidden">·</span>
+              <a href="/llms.txt" className="hover:text-white transition-colors font-mono hidden">llms.txt</a>
+            </div>
+          </div>
 
           <div className="flex items-center gap-4">
             {[
               { Icon: Github, href: "https://github.com/SauravkuSingh", external: true },
               { Icon: Linkedin, href: "https://www.linkedin.com/in/saurav-singh-fsdev/", external: true },
               { Icon: Phone, href: telHref(PHONES[0]), external: false },
-            //   { Icon: Twitter, href: "https://twitter.com" },
             ].map(({ Icon, href, external }, i) => (
               <motion.a
                 whileHover={{ scale: 1.1, rotate: 5 }}
